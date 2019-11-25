@@ -1,0 +1,11 @@
+{
+    "telegram": {
+        "bot_token": "",
+        "channels": [],
+        "message_format": ""
+    },
+    "crawler": {
+        "input_path": "keywords.txt",
+        "delay_timer": 1000
+    }
+}
