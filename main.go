@@ -9,22 +9,25 @@ import (
 
 func main() {
 	var c crawlers.Crawler
-	choice := "mt"
+	choice := "sedaily"
 
 	switch choice {
 	case "edaily":
 		c = crawlers.Edaily{}
 	case "etoday":
 		c = crawlers.Etoday{}
-	case "seoul":
-		c = crawlers.Seoul{}
+	case "sedaily":
+		c = crawlers.Sedaily{}
 	case "mt":
 		c = crawlers.MT{}
 	}
 
 	li, _ := crawlers.GetList(c, 15)
 	for idx, _ := range li {
-		crawlers.GetContents(c, &li[idx])
+		err := crawlers.GetContents(c, &li[idx])
+		if err != nil {
+			fmt.Println(idx, "번 에러!", err)
+		}
 	}
 	/*
 		fmt.Println(li[3].Title)

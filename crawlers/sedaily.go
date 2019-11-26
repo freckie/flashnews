@@ -1,18 +1,3 @@
-/*
-import requests
-from bs4 import BeautifulSoup
-
-url = 'https://m.sedaily.com/News/NewsAll'
-
-req = requests.get(url)
-bs = BeautifulSoup(req.content, 'lxml')
-
-ul = bs.find('ul', class_='news_list')
-items = [it.get_text() for it in ul.find_all('a')]
-print(items)
-
-*/
-
 package crawlers
 
 import (
@@ -25,12 +10,12 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const seoulCommonURL = "https://m.sedaily.com/News/NewsAll"
-const seoulItemURL = "http://m.sedaily.com"
+const sedailyCommonURL = "https://m.sedaily.com/News/NewsAll"
+const sedailyItemURL = "http://m.sedaily.com"
 
-type Seoul struct{}
+type Sedaily struct{}
 
-func (c Seoul) GetList(number int) ([]models.NewsItem, error) {
+func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
 	if number > 15 || number < 1 {
@@ -41,7 +26,7 @@ func (c Seoul) GetList(number int) ([]models.NewsItem, error) {
 	result := make([]models.NewsItem, _number)
 
 	// Request
-	req, err := http.Get(seoulCommonURL)
+	req, err := http.Get(sedailyCommonURL)
 	if err != nil {
 		return result, err
 	}
@@ -73,7 +58,7 @@ func (c Seoul) GetList(number int) ([]models.NewsItem, error) {
 			return
 		}
 		title := aTag.Text()
-		url := seoulItemURL + href
+		url := sedailyItemURL + href
 
 		date := dlTag.Find("span.letter").Text()
 
@@ -89,7 +74,7 @@ func (c Seoul) GetList(number int) ([]models.NewsItem, error) {
 	return result, nil
 }
 
-func (c Seoul) GetContents(item *models.NewsItem) error {
+func (c Sedaily) GetContents(item *models.NewsItem) error {
 	// Request
 	req, err := http.Get(item.URL)
 	if err != nil {

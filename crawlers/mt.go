@@ -108,11 +108,15 @@ func (c MT) GetContents(item *models.NewsItem) error {
 	}
 
 	wrapper := html.Find("div#textBody")
-	remove := wrapper.Find("table.article_photo.center").Text()
+	remove := wrapper.Find("table.article_photo").Text()
 
-	remove, err = utils.ReadCP949(remove)
-	if err != nil {
-		return err
+	if remove == "" {
+		remove = ""
+	} else {
+		remove, err = utils.ReadCP949(remove)
+		if err != nil {
+			return err
+		}
 	}
 
 	contents := wrapper.Text()

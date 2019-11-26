@@ -106,14 +106,18 @@ func (c Edaily) GetContents(item *models.NewsItem) error {
 	// Parsing
 	wrapper := html.Find("div#viewcontent")
 	remove := wrapper.Find("div.ovh").Text()
-	remove, err = utils.ReadCP949(remove)
-	if err != nil {
-		return err
+	if remove != "" {
+		remove, err = utils.ReadCP949(remove)
+		if err != nil {
+			return err
+		}
 	}
 	remove2 := wrapper.Find("font").Text()
-	remove2, err = utils.ReadCP949(remove2)
-	if err != nil {
-		return err
+	if remove2 != "" {
+		remove2, err = utils.ReadCP949(remove2)
+		if err != nil {
+			return err
+		}
 	}
 
 	contents := wrapper.Text()
