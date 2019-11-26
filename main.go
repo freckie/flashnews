@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var c crawlers.Crawler
-	choice := "sedaily"
+	choice := "asiae"
 
 	switch choice {
 	case "edaily":
@@ -20,6 +20,8 @@ func main() {
 		c = crawlers.Sedaily{}
 	case "mt":
 		c = crawlers.MT{}
+	case "asiae":
+		c = crawlers.Asiae{}
 	}
 
 	li, _ := crawlers.GetList(c, 15)
