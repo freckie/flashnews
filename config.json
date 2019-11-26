@@ -5,8 +5,8 @@
         "message_format": "%(title)\n\n%(keywords)\n\n%(contents)\n\n%(link)"
     },
     "crawler": {
-        "input_path": "keywords.txt",
-        "input_path2": "news_config.json",
-        "delay_timer": 1000
+        "input_path": "./keywords.txt",
+        "input_path2": "./news_config.json",
+        "delay_timer": 10000
     }
 }

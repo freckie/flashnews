@@ -1,27 +1,27 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"os"
 
 	_ "flashnews/crawlers"
 	"flashnews/engine"
 	_ "flashnews/utils"
 )
 
-func main() {
-	en := engine.Engine{}
-	err := en.Init("config.json")
-	if err != nil {
-		fmt.Println("[INIT ERROR]", err)
-	}
-	fmt.Println(en.Crawlers[0].GetList(15))
+var logger *log.Logger
 
-	/*
-		for idx, item := range li {
-			fmt.Println("=============", idx, "=============")
-			fmt.Println("제목 :", item.Title)
-			fmt.Println("내용 :", item.Contents)
-			fmt.Println("TitleCond :", utils.TitleCond(item))
-			fmt.Println(utils.KeywordCond(item, keywords))
-		}*/
+func main() {
+	// Logger
+	logger = log.New(os.Stdout, "INFO: ", log.LstdFlags)
+
+	// Engine
+	en := engine.Engine{}
+	err := en.Init(logger, "./config.json")
+	if err != nil {
+		logger.Println("[INIT ERROR]", err)
+		os.Exit(1)
+	}
+
+	en.Run()
 }
