@@ -1,27 +1,29 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
-	_ "flashnews/crawlers"
 	"flashnews/engine"
-	_ "flashnews/utils"
 )
 
 var logger *log.Logger
 
 func main() {
 	// Logger
-	logger = log.New(os.Stdout, "INFO: ", log.LstdFlags)
+	logger = log.New(os.Stdout, "LOG ", log.LstdFlags)
 
 	// Engine
 	en := engine.Engine{}
-	err := en.Init(logger, "./config.json")
+	err := en.Init(logger, "config.json")
 	if err != nil {
 		logger.Println("[INIT ERROR]", err)
-		os.Exit(1)
+		fmt.Scan()
+		os.Exit(0)
 	}
 
 	en.Run()
+	fmt.Scan()
+	os.Exit(0)
 }

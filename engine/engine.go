@@ -5,6 +5,7 @@ import (
 	"flashnews/crawlers"
 	"flashnews/utils"
 	"log"
+	"sync"
 	"time"
 )
 
@@ -67,15 +68,17 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 		c.Crawlers = append(c.Crawlers, crawlers.Sedaily{})
 	}
 
+	c.Logger.Println("세팅 완료!")
+
 	return nil
 }
 
 // Run : Main Func
 func (c *Engine) Run() {
 	// var
-	var isFirst map[string]bool
-	var prevData map[string][]string
-	var errorCount map[string]int
+	isFirst := make(map[string]bool)
+	prevData := make(map[string][]string)
+	errorCount := make(map[string]int)
 	for _, crawler := range c.Crawlers {
 		name := crawler.GetName()
 		isFirst[name] = true
@@ -83,11 +86,19 @@ func (c *Engine) Run() {
 		errorCount[name] = 0
 	}
 
-	for _, crawler := range c.Crawlers {
-		_name := crawler.GetName()
+	c.Logger.Println("메인 루프 시작.")
 
-		// Parallel Crawling
-		go func(name string) {
+	var wait sync.WaitGroup
+	defer wait.Wait()
+	for _, _crawler := range c.Crawlers {
+		_name := _crawler.GetName()
+
+		// Concurrent Crawling
+		wait.Add(1)
+		go func(name string, crawler crawlers.Crawler) {
+			defer wait.Done()
+
+			c.Logger.Printf("%s 언론사 수집 시작.\n", name)
 
 			// Main Loop in goroutine
 			for {
@@ -102,6 +113,7 @@ func (c *Engine) Run() {
 				// first time
 				if isFirst[name] {
 					prevData[name] = utils.MakeURLArray(data)
+					c.Logger.Printf("%s 언론사 첫 수집 완료.\n", name)
 					time.Sleep(time.Millisecond * time.Duration(c.Cfg.Crawler.DelayTimer))
 					continue
 				}
@@ -128,7 +140,6 @@ func (c *Engine) Run() {
 				time.Sleep(time.Millisecond * time.Duration(c.Cfg.Crawler.DelayTimer))
 			}
 
-		}(_name)
+		}(_name, _crawler)
 	}
-
 }
