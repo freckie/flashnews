@@ -1,12 +1,12 @@
-package services
+package engine
 
 import (
 	"flashnews/config"
 	"flashnews/crawlers"
 )
 
-// CEngine : Crawling Engine
-type CEngine struct {
+// Engine : Crawling Main Engine
+type Engine struct {
 	Cfg      *config.Config
 	NewsCfg  *config.NewsConfig
 	TG       *TGEngine
@@ -14,7 +14,7 @@ type CEngine struct {
 }
 
 // Init : Initialize Engine Driver
-func (c *CEngine) Init(filePath string) error {
+func (c *Engine) Init(filePath string) error {
 	var err error
 
 	// Config

@@ -4,17 +4,17 @@ import (
 	"fmt"
 
 	_ "flashnews/crawlers"
-	"flashnews/services"
+	"flashnews/engine"
 	_ "flashnews/utils"
 )
 
 func main() {
-	ce := services.CEngine{}
-	err := ce.Init("config.json")
+	en := engine.Engine{}
+	err := en.Init("config.json")
 	if err != nil {
 		fmt.Println("[INIT ERROR]", err)
 	}
-	fmt.Println(ce.Crawlers[0].GetList(15))
+	fmt.Println(en.Crawlers[0].GetList(15))
 
 	/*
 		for idx, item := range li {
