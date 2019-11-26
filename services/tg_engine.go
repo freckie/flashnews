@@ -2,6 +2,7 @@ package services
 
 import (
 	"log"
+	"strings"
 
 	"flashnews/config"
 	"flashnews/models"
@@ -24,8 +25,14 @@ func (tg TGEngine) GenerateBot() error {
 	return nil
 }
 
-func (tg TGEngine) SendMessage(item models.NewsItem, company string, keyword string) error {
+func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
+	keywordStr := "[" + strings.Join(keywords, ", ") + "]"
+
 	msgStr := tg.Cfg.Telegram.MessageFormat
+	msgStr = strings.Replace(msgStr, "%(title)", item.Title, -1)
+	msgStr = strings.Replace(msgStr, "%(contents)", item.Contents, -1)
+	msgStr = strings.Replace(msgStr, "%(keywords)", keywordStr, -1)
+	msgStr = strings.Replace(msgStr, "%(link)", item.URL, -1)
 
 	for _, channel := range tg.Cfg.Telegram.Channels {
 		newMsg := telegram.NewMessage(channel, msgStr)

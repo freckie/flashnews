@@ -74,7 +74,6 @@ func (c Edaily) GetList(number int) ([]models.NewsItem, error) {
 
 		result[i] = models.NewsItem{
 			Title:    title,
-			Keyword:  "",
 			URL:      url,
 			Contents: "",
 			Datetime: date,

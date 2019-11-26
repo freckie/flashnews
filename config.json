@@ -2,7 +2,7 @@
     "telegram": {
         "bot_token": "",
         "channels": [],
-        "message_format": ""
+        "message_format": "%(title)\n\n%(keywords)\n\n%(contents)\n\n%(link)"
     },
     "crawler": {
         "input_path": "keywords.txt",
