@@ -15,6 +15,10 @@ const sedailyItemURL = "http://m.sedaily.com"
 
 type Sedaily struct{}
 
+func (c Sedaily) GetName() string {
+	return "sedaily"
+}
+
 func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

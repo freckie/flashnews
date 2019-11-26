@@ -16,6 +16,10 @@ const edailyItemURL = "https://www.edaily.co.kr/news/realtime/realtime_NewsRead.
 
 type Edaily struct{}
 
+func (c Edaily) GetName() string {
+	return "edaily"
+}
+
 func (c Edaily) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

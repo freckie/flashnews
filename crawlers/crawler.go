@@ -6,8 +6,13 @@ import (
 )
 
 type Crawler interface {
+	GetName() string                               // Get Crawler Name
 	GetList(number int) ([]models.NewsItem, error) // Crawl List of NewsItem
 	GetContents(item *models.NewsItem) error       // Crawl Contents of Particular Item
+}
+
+func GetName(c Crawler) string {
+	return c.GetName()
 }
 
 func GetList(c Crawler, number int) ([]models.NewsItem, error) {

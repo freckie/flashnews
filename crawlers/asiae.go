@@ -16,6 +16,10 @@ const asiaeItemURL = "https://www.asiae.co.kr"
 
 type Asiae struct{}
 
+func (c Asiae) GetName() string {
+	return "asiae"
+}
+
 func (c Asiae) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

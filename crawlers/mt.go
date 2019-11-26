@@ -16,6 +16,10 @@ const mtItemURL = "https://news.mt.co.kr/newsflash/frame_article.html?sec=mt&typ
 
 type MT struct{}
 
+func (c MT) GetName() string {
+	return "mt"
+}
+
 func (c MT) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

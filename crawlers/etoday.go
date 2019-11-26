@@ -15,6 +15,10 @@ const etodayItemURL = "http://www.etoday.co.kr/news/flashnews/flash_view?idxno="
 
 type Etoday struct{}
 
+func (c Etoday) GetName() string {
+	return "etoday"
+}
+
 func (c Etoday) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
