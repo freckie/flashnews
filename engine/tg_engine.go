@@ -45,3 +45,18 @@ func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 
 	return nil
 }
+
+func (tg TGEngine) TestMessage() error {
+	msgStr := "테스트 메세지입니다."
+
+	for _, channel := range tg.Cfg.Telegram.Channels {
+		newMsg := telegram.NewMessage(channel, msgStr)
+		sentMsg, err := tg.Bot.Send(newMsg)
+		if err != nil {
+			log.Println("[ERROR] 테스트 메세지 전송 실패 : ", err)
+		}
+		log.Printf("채널(%d)에 테스트 메세지 전송 : %v", channel, sentMsg.Text)
+	}
+
+	return nil
+}
