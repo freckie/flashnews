@@ -13,6 +13,7 @@ type CEngine struct {
 	Crawlers []crawlers.Crawler
 }
 
+// Init : Initialize Engine Driver
 func (c *CEngine) Init(filePath string) error {
 	var err error
 
