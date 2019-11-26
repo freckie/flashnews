@@ -13,7 +13,7 @@ type CEngine struct {
 	Crawlers []crawlers.Crawler
 }
 
-func (c CEngine) Init(filePath string) error {
+func (c *CEngine) Init(filePath string) error {
 	var err error
 
 	// Config

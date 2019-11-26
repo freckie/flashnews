@@ -15,7 +15,7 @@ type TGEngine struct {
 	Cfg *config.Config
 }
 
-func (tg TGEngine) GenerateBot() error {
+func (tg *TGEngine) GenerateBot() error {
 	bot, err := telegram.NewBotAPI(tg.Cfg.Telegram.BotToken)
 	if err != nil {
 		return err

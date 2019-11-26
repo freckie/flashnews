@@ -47,11 +47,7 @@ func main() {
 	if err != nil {
 		fmt.Println("[INIT ERROR]", err)
 	}
-
-	fmt.Println(ce.Cfg)
-	fmt.Println(ce.NewsCfg)
-	fmt.Println(ce.TG)
-	fmt.Println(ce.Crawlers)
+	fmt.Println(ce.Crawlers[0].GetList(15))
 
 	/*
 		for idx, item := range li {
