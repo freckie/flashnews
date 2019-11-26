@@ -113,6 +113,7 @@ func (c *Engine) Run() {
 				// first time
 				if isFirst[name] {
 					prevData[name] = utils.MakeURLArray(data)
+					isFirst[name] = false
 					c.Logger.Printf("%s 언론사 첫 수집 완료.\n", name)
 					time.Sleep(time.Millisecond * time.Duration(c.Cfg.Crawler.DelayTimer))
 					continue
