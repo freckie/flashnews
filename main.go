@@ -37,9 +37,9 @@ func main() {
 
 	for idx, item := range li {
 		fmt.Println("=============", idx, "=============")
-		fmt.Println(item.Title)
-		fmt.Println(item.Contents)
-		fmt.Println(utils.TitleCond(item))
+		fmt.Println("제목 :", item.Title)
+		fmt.Println("내용 :", item.Contents)
+		fmt.Println("TitleCond :", utils.TitleCond(item))
 		fmt.Println(utils.KeywordCond(item, keywords))
 	}
 }

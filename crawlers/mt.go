@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"flashnews/models"
+	"flashnews/utils"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -31,6 +32,7 @@ func (c MT) GetList(number int) ([]models.NewsItem, error) {
 		return result, err
 	}
 	defer req.Body.Close()
+
 	if req.StatusCode != 200 {
 		return result, fmt.Errorf("[ERROR] Request Status Code : %d, %s", req.StatusCode, req.Status)
 	}
@@ -45,7 +47,7 @@ func (c MT) GetList(number int) ([]models.NewsItem, error) {
 	wrapper := html.Find("div.group")
 	items := wrapper.Find("li.bundle")
 	items.Each(func(i int, sel *goquery.Selection) {
-		if i > _number {
+		if i >= _number {
 			return
 		}
 
@@ -58,7 +60,13 @@ func (c MT) GetList(number int) ([]models.NewsItem, error) {
 		}
 		id := reForNumbers.FindString(href)
 		title := strings.TrimSpace(aTag.Text())
-		url := etodayItemURL + id
+		title, err = utils.ReadCP949(title)
+		if err != nil {
+			result[i] = models.NewsItem{}
+			return
+		}
+
+		url := mtItemURL + id
 
 		date := sel.Find("span.time").Text()
 
@@ -93,10 +101,28 @@ func (c MT) GetContents(item *models.NewsItem) error {
 	}
 
 	// Parsing
-	wrapper := html.Find("div.textBody")
+	title := strings.TrimSpace(html.Find("div#article").Find("h1").Text())
+	item.Title, err = utils.ReadCP949(title)
+	if err != nil {
+		return err
+	}
+
+	wrapper := html.Find("div#textBody")
 	remove := wrapper.Find("table.article_photo.center").Text()
-	contents := strings.TrimSpace(strings.Replace(wrapper.Text(), remove, "", -1))
-	item.Contents = strings.Replace(contents, " ", "", -1)
+
+	remove, err = utils.ReadCP949(remove)
+	if err != nil {
+		return err
+	}
+
+	contents := wrapper.Text()
+	contents, err = utils.ReadCP949(contents)
+	if err != nil {
+		return err
+	}
+
+	contents = strings.TrimSpace(strings.Replace(contents, remove, "", -1))
+	item.Contents = strings.Replace(contents, "\n", "", -1)
 
 	return nil
 }
