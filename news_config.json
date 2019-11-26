@@ -1,7 +1,7 @@
 {
     "asiae": true,
-    "edaily": false,
-    "etoday": false,
+    "edaily": true,
+    "etoday": true,
     "mt": true,
-    "sedaily": false
+    "sedaily": true
 }

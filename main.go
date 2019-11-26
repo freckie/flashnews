@@ -5,12 +5,17 @@ import (
 	"log"
 	"os"
 
+	"runtime"
+
 	"flashnews/engine"
 )
 
 var logger *log.Logger
 
 func main() {
+	// Parallel Processing
+	runtime.GOMAXPROCS(4)
+
 	// Logger
 	logger = log.New(os.Stdout, "LOG ", log.LstdFlags)
 
@@ -22,6 +27,7 @@ func main() {
 		fmt.Scan()
 		os.Exit(0)
 	}
+	en.TG.TestMessage()
 
 	en.Run()
 	fmt.Scan()

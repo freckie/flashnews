@@ -16,8 +16,12 @@ func TitleCond(item models.NewsItem) bool {
 	cond1, _ = regexp.MatchString("^([0-9a-zA-Z가-힣 ]+ ?[,\"“])", title)
 
 	// Cond2 : 첫 글자가 괄호로 시작하는지.
-	char := strings.TrimSpace(title)[0]
-	cond2 = (char == '[') || (char == '(')
+	if temp := strings.TrimSpace(title); len(temp) > 0 {
+		char := strings.TrimSpace(title)[0]
+		cond2 = (char == '[') || (char == '(')
+	} else {
+		return false
+	}
 
 	return cond1 || cond2
 }
