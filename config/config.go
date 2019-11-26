@@ -16,14 +16,22 @@ type TelegramConfig struct {
 
 type CrawlerConfig struct {
 	InputPath  string `json:"input_path"`
+	InputPath2 string `json:"input_path2"`
 	DelayTimer int64  `json:"delay_timer"`
-	DelayAuto  bool
 }
 
 type Config struct {
 	Telegram TelegramConfig `json:"telegram"`
 	Crawler  CrawlerConfig  `json:"crawler"`
 	Keywords []string
+}
+
+type NewsConfig struct {
+	Asiae   bool `json:"asiae"`
+	Edaily  bool `json:"edaily"`
+	Etoday  bool `json:"etoday"`
+	MT      bool `json:"mt"`
+	Sedaily bool `json:"sedaily"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
@@ -36,11 +44,18 @@ func LoadConfig(filePath string) (*Config, error) {
 
 	json.Unmarshal(dataBytes, cfg)
 
-	if cfg.Crawler.DelayTimer < 0 {
-		cfg.Crawler.DelayAuto = true
-	} else {
-		cfg.Crawler.DelayAuto = false
+	return cfg, nil
+}
+
+func LoadNewsConfig(filePath string) (*NewsConfig, error) {
+	cfg := &NewsConfig{}
+
+	dataBytes, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return cfg, err
 	}
+
+	json.Unmarshal(dataBytes, cfg)
 
 	return cfg, nil
 }

@@ -1,11 +1,12 @@
 {
     "telegram": {
-        "bot_token": "",
-        "channels": [],
+        "bot_token": "1040821320:AAF4TzKMkkO6FUxyyLI1JLVvobTfEfPyOTU",
+        "channels": [-1001260769353, -1001324046800],
         "message_format": "%(title)\n\n%(keywords)\n\n%(contents)\n\n%(link)"
     },
     "crawler": {
         "input_path": "keywords.txt",
+        "input_path2": "news_config.json",
         "delay_timer": 1000
     }
 }
