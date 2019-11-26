@@ -47,7 +47,7 @@ func (c Etoday) GetList(number int) ([]models.NewsItem, error) {
 	wrapper := html.Find("div.flash_tab_lst")
 	items := wrapper.Find("li")
 	items.Each(func(i int, sel *goquery.Selection) {
-		if i > _number {
+		if i >= _number {
 			return
 		}
 

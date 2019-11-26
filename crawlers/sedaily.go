@@ -45,7 +45,7 @@ func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 	wrapper := html.Find("ul.news_list")
 	items := wrapper.Find("li")
 	items.Each(func(i int, sel *goquery.Selection) {
-		if i > _number {
+		if i >= _number {
 			return
 		}
 
