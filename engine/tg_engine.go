@@ -30,7 +30,7 @@ func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 
 	msgStr := tg.Cfg.Telegram.MessageFormat
 	msgStr = strings.Replace(msgStr, "%(title)", item.Title, -1)
-	msgStr = strings.Replace(msgStr, "%(contents)", item.Contents, -1)
+	msgStr = strings.Replace(msgStr, "%(contents)", item.Contents[0:300], -1)
 	msgStr = strings.Replace(msgStr, "%(keywords)", keywordStr, -1)
 	msgStr = strings.Replace(msgStr, "%(link)", item.URL, -1)
 
