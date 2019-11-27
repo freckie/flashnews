@@ -7,6 +7,7 @@
     "crawler": {
         "input_path": "./keywords.txt",
         "input_path2": "./news_config.json",
-        "delay_timer": 10000
+        "delay_timer": 10000,
+        "max_procs": 4
     }
 }

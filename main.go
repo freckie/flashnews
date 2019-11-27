@@ -13,9 +13,6 @@ import (
 var logger *log.Logger
 
 func main() {
-	// Parallel Processing
-	runtime.GOMAXPROCS(4)
-
 	// Logger
 	logger = log.New(os.Stdout, "LOG ", log.LstdFlags)
 
@@ -27,7 +24,9 @@ func main() {
 		fmt.Scan()
 		os.Exit(0)
 	}
-	en.TG.TestMessage()
+
+	// Parallel Processing
+	runtime.GOMAXPROCS(en.Cfg.Crawler.MaxProcs)
 
 	en.Run()
 	fmt.Scan()

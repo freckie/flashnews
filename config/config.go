@@ -18,6 +18,7 @@ type CrawlerConfig struct {
 	InputPath  string `json:"input_path"`
 	InputPath2 string `json:"input_path2"`
 	DelayTimer int64  `json:"delay_timer"`
+	MaxProcs   int    `json:"max_procs"`
 }
 
 type Config struct {
