@@ -3,6 +3,7 @@ package utils
 import (
 	"bytes"
 	"strings"
+	"unicode/utf8"
 
 	"github.com/suapapa/go_hangul/encoding/cp949"
 )
@@ -22,4 +23,14 @@ func ReadCP949(data string) (string, error) {
 	}
 
 	return strings.TrimSpace(string(b[:c])), nil
+}
+
+func StringSplit(data string, length int) string {
+	b := []byte(data)
+	idx := 0
+	for i := 0; i < length; i++ {
+		_, size := utf8.DecodeRune(b[idx:])
+		idx += size
+	}
+	return data[:idx]
 }
