@@ -122,11 +122,7 @@ func (c *Engine) Run() {
 				// Detect New Item
 				for idx, _ := range data {
 					if !utils.IsContain(data[idx].URL, prevData[name]) { // New Item
-
-						c.Logger.Printf("[DEBUG] %s 새로운 item : %s\n", name, data[idx].Title)
-
 						if utils.TitleCond(data[idx]) { // if TitleCond true
-							c.Logger.Printf("[DEBUG] %s TitleCond 부합하는 item : %s\n", name, data[idx].Title)
 							err = crawler.GetContents(&data[idx])
 							if err != nil {
 								c.Logger.Printf("[ERROR] crawler.GetContents() : crawler(%s) : idx(%d) : %s", name, idx, err)
@@ -136,7 +132,6 @@ func (c *Engine) Run() {
 
 							detectKeywords, ok := utils.KeywordCond(data[idx], c.Cfg.Keywords)
 							if ok && len(detectKeywords) >= 3 {
-								c.Logger.Printf("[DEBUG] %s 조건에 부합하는 item : %s\n", name, data[idx].Title)
 								go c.TG.SendMessage(data[idx], detectKeywords)
 							}
 						}
@@ -144,7 +139,6 @@ func (c *Engine) Run() {
 				}
 
 				prevData[name] = utils.MakeURLArray(data)
-				c.Logger.Printf("[DEBUG] %s 한바퀴 완료.\n", name)
 				time.Sleep(time.Millisecond * time.Duration(c.Cfg.Crawler.DelayTimer))
 			}
 
