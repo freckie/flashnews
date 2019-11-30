@@ -8,6 +8,7 @@
         "input_path": "./keywords.txt",
         "input_path2": "./news_config.json",
         "delay_timer": 10000,
-        "max_procs": 4
+        "max_procs": 4,
+        "keyword_detection_num": 3
     }
 }

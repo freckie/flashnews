@@ -131,7 +131,7 @@ func (c *Engine) Run() {
 							}
 
 							detectKeywords, ok := utils.KeywordCond(data[idx], c.Cfg.Keywords)
-							if ok && len(detectKeywords) >= 3 {
+							if ok && len(detectKeywords) >= c.Cfg.Crawler.KeywordDetectionNum {
 								go c.TG.SendMessage(data[idx], detectKeywords)
 							}
 						}

@@ -15,10 +15,11 @@ type TelegramConfig struct {
 }
 
 type CrawlerConfig struct {
-	InputPath  string `json:"input_path"`
-	InputPath2 string `json:"input_path2"`
-	DelayTimer int64  `json:"delay_timer"`
-	MaxProcs   int    `json:"max_procs"`
+	InputPath           string `json:"input_path"`
+	InputPath2          string `json:"input_path2"`
+	DelayTimer          int64  `json:"delay_timer"`
+	MaxProcs            int    `json:"max_procs"`
+	KeywordDetectionNum int    `json:"keyword_detection_num"`
 }
 
 type Config struct {
