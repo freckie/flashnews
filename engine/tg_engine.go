@@ -30,14 +30,22 @@ func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 	keywordStr := "[" + strings.Join(keywords, ", ") + "]"
 
 	msgStr := tg.Cfg.Telegram.MessageFormat
-	msgStr = strings.Replace(msgStr, "%(title)", item.Title, -1)
+	msgStr = strings.Replace(msgStr, "%(title)", "<b>"+item.Title+"</b>", -1)
 	msgStr = strings.Replace(msgStr, "%(contents)", utils.StringSplit(item.Contents, 300), -1)
 	msgStr = strings.Replace(msgStr, "%(keywords)", keywordStr, -1)
 	msgStr = strings.Replace(msgStr, "%(link)", item.URL, -1)
 
 	for _, channel := range tg.Cfg.Telegram.Channels {
-		newMsg := telegram.NewMessage(channel, msgStr)
-		sentMsg, err := tg.Bot.Send(newMsg)
+		msgType := telegram.MessageConfig{
+			BaseChat: telegram.BaseChat{
+				ChatID:           channel,
+				ReplyToMessageID: 0,
+			},
+			Text:                  msgStr,
+			ParseMode:             "html",
+			DisableWebPagePreview: false,
+		}
+		sentMsg, err := tg.Bot.Send(msgType)
 		if err != nil {
 			log.Println("[ERROR] 메세지 전송 실패 : ", err)
 		}
@@ -48,11 +56,19 @@ func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 }
 
 func (tg TGEngine) TestMessage() error {
-	msgStr := "테스트 메세지입니다."
+	msgStr := "<b>테스트 메세지입니다.</b>"
 
 	for _, channel := range tg.Cfg.Telegram.Channels {
-		newMsg := telegram.NewMessage(channel, msgStr)
-		sentMsg, err := tg.Bot.Send(newMsg)
+		msgType := telegram.MessageConfig{
+			BaseChat: telegram.BaseChat{
+				ChatID:           channel,
+				ReplyToMessageID: 0,
+			},
+			Text:                  msgStr,
+			ParseMode:             "html",
+			DisableWebPagePreview: false,
+		}
+		sentMsg, err := tg.Bot.Send(msgType)
 		if err != nil {
 			log.Println("[ERROR] 테스트 메세지 전송 실패 : ", err)
 		}
