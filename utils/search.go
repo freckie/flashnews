@@ -13,7 +13,7 @@ func TitleCond(item models.NewsItem) bool {
 	title := item.Title
 
 	// Cond1 : 첫 단어 이후 쉼표나 따옴표로 시작하는지.
-	cond1, _ = regexp.MatchString("^([0-9a-zA-Z가-힣 ]+ ?[,\"“])", title)
+	cond1, _ = regexp.MatchString("^([0-9a-zA-Z가-힣]+ ?[,\"“])", title)
 
 	// Cond2 : 첫 글자가 괄호로 시작하는지.
 	if temp := strings.TrimSpace(title); len(temp) > 0 {
