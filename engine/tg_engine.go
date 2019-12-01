@@ -28,10 +28,12 @@ func (tg *TGEngine) GenerateBot() error {
 
 func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 	keywordStr := "[" + strings.Join(keywords, ", ") + "]"
+	contentsStr := strings.Replace(utils.StringSplit(item.Contents, 300), "<", "", -1)
+	contentsStr = strings.Replace(contentsStr, ">", "", -1)
 
 	msgStr := tg.Cfg.Telegram.MessageFormat
 	msgStr = strings.Replace(msgStr, "%(title)", "<b>"+item.Title+"</b>", -1)
-	msgStr = strings.Replace(msgStr, "%(contents)", utils.StringSplit(item.Contents, 300), -1)
+	msgStr = strings.Replace(msgStr, "%(contents)", contentsStr, -1)
 	msgStr = strings.Replace(msgStr, "%(keywords)", keywordStr, -1)
 	msgStr = strings.Replace(msgStr, "%(link)", item.URL, -1)
 
