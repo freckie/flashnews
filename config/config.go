@@ -29,11 +29,19 @@ type Config struct {
 }
 
 type NewsConfig struct {
-	Asiae   bool `json:"asiae"`
-	Edaily  bool `json:"edaily"`
-	Etoday  bool `json:"etoday"`
-	MT      bool `json:"mt"`
-	Sedaily bool `json:"sedaily"`
+	Asiae          bool `json:"asiae.co.kr"`
+	Edaily         bool `json:"edaily.co.kr"`
+	Etoday         bool `json:"etoday.co.kr"`
+	MT             bool `json:"mt.co.kr"`
+	Sedaily        bool `json:"sedaily.com"`
+	BizChosun      bool `json:"biz.chosun.com"`
+	FnNews         bool `json:"fnnews.com"`
+	Hankyung       bool `json:"hankyung.com"`
+	InfoStockDaily bool `json:"infostockdaily.co.kr"`
+	MK             bool `json:"mk.co.kr"`
+	MTN            bool `json:"mtn.co.kr"`
+	Newspim        bool `json:"newspim.com"`
+	YNA            bool `json:"yna.co.kr"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {

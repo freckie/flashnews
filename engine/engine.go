@@ -67,6 +67,30 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.Sedaily {
 		c.Crawlers = append(c.Crawlers, crawlers.Sedaily{})
 	}
+	if c.NewsCfg.BizChosun {
+		c.Crawlers = append(c.Crawlers, crawlers.BizChosun{})
+	}
+	if c.NewsCfg.FnNews {
+		c.Crawlers = append(c.Crawlers, crawlers.FnNews{})
+	}
+	if c.NewsCfg.Hankyung {
+		c.Crawlers = append(c.Crawlers, crawlers.Hankyung{})
+	}
+	if c.NewsCfg.InfoStockDaily {
+		c.Crawlers = append(c.Crawlers, crawlers.InfoStockDaily{})
+	}
+	if c.NewsCfg.MK {
+		c.Crawlers = append(c.Crawlers, crawlers.MK{})
+	}
+	if c.NewsCfg.MTN {
+		c.Crawlers = append(c.Crawlers, crawlers.MTN{})
+	}
+	if c.NewsCfg.Newspim {
+		c.Crawlers = append(c.Crawlers, crawlers.Newspim{})
+	}
+	if c.NewsCfg.YNA {
+		c.Crawlers = append(c.Crawlers, crawlers.YNA{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 
