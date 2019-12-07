@@ -13,22 +13,31 @@ import (
 var logger *log.Logger
 
 func main() {
-	// Logger
-	logger = log.New(os.Stdout, "LOG ", log.LstdFlags)
+	// Testmode
+	testMode := false
 
-	// Engine
-	en := engine.Engine{}
-	err := en.Init(logger, "config.json")
-	if err != nil {
-		logger.Println("[INIT ERROR]", err)
+	if !testMode {
+		// Logger
+		logger = log.New(os.Stdout, "LOG ", log.LstdFlags)
+
+		// Engine
+		en := engine.Engine{}
+		err := en.Init(logger, "config.json")
+		if err != nil {
+			logger.Println("[INIT ERROR]", err)
+			fmt.Scan()
+			os.Exit(0)
+		}
+
+		// Parallel Processing
+		runtime.GOMAXPROCS(en.Cfg.Crawler.MaxProcs)
+
+		en.Run()
 		fmt.Scan()
 		os.Exit(0)
+	} else {
+
+		/* Write Test Code Here */
+
 	}
-
-	// Parallel Processing
-	runtime.GOMAXPROCS(en.Cfg.Crawler.MaxProcs)
-
-	en.Run()
-	fmt.Scan()
-	os.Exit(0)
 }
