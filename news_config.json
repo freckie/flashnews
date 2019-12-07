@@ -1,7 +1,16 @@
 {
-    "asiae": true,
-    "edaily": true,
-    "etoday": true,
-    "mt": true,
-    "sedaily": true
+    "asiae.co.kr": true,
+    "edaily.co.kr": true,
+    "etodayc.o.kr": true,
+    "mt.co.kr": true,
+    "sedaily.com": true,
+    "biz.chosun.com": false,
+    "fnnews.com": false,
+    "hankyung.com": false,
+    "infostockdaily.co.kr": false,
+    "mk.co.kr": false,
+    "mtn.co.kr": false,
+    "newspim.com": false,
+    "newstomato.com": false,
+    "yna.co.kr": false
 }
