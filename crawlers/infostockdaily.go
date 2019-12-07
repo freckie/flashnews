@@ -68,10 +68,6 @@ func (c InfoStockDaily) GetList(number int) ([]models.NewsItem, error) {
 		date = strings.TrimSpace(strings.Split(date, "|")[2])
 		title := aTag.Text()
 
-		if err != nil {
-			result[i] = models.NewsItem{}
-		}
-
 		result[i] = models.NewsItem{
 			Title:    title,
 			URL:      url,

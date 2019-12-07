@@ -66,10 +66,6 @@ func (c Hankyung) GetList(number int) ([]models.NewsItem, error) {
 		date := sel.Find("p.time").Text()
 		title := aTag.Text()
 
-		if err != nil {
-			result[i] = models.NewsItem{}
-		}
-
 		result[i] = models.NewsItem{
 			Title:    title,
 			URL:      url,

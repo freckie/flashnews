@@ -66,11 +66,6 @@ func (c BizChosun) GetList(number int) ([]models.NewsItem, error) {
 		date := sel.Find("span.time").Text()
 		title := strings.Replace(aTag.Text(), date, "", -1)
 
-		//title, err = utils.ReadCP949(title)
-		if err != nil {
-			result[i] = models.NewsItem{}
-		}
-
 		result[i] = models.NewsItem{
 			Title:    title,
 			URL:      url,
