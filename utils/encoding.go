@@ -8,6 +8,8 @@ import (
 	"github.com/suapapa/go_hangul/encoding/cp949"
 )
 
+var /* const */ stringsToRemove = []string{"  ", "\t", "\n"}
+
 func ReadCP949(data string) (string, error) {
 	br := bytes.NewReader([]byte(data))
 	r, err := cp949.NewReader(br)
@@ -33,4 +35,12 @@ func StringSplit(data string, length int) string {
 		idx += size
 	}
 	return data[:idx]
+}
+
+func TrimAll(value string) string {
+	result := value
+	for _, str := range stringsToRemove {
+		result = strings.Replace(result, str, "", -1)
+	}
+	return result
 }
