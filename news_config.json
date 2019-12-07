@@ -1,15 +1,15 @@
 {
-    "asiae.co.kr": true,
-    "edaily.co.kr": true,
-    "etoday.co.kr": true,
-    "mt.co.kr": true,
-    "sedaily.com": true,
-    "biz.chosun.com": false,
-    "fnnews.com": false,
-    "hankyung.com": false,
-    "infostockdaily.co.kr": false,
-    "mk.co.kr": false,
-    "mtn.co.kr": false,
-    "newspim.com": false,
-    "yna.co.kr": false
+    "asiae.co.kr": false,
+    "edaily.co.kr": false,
+    "etoday.co.kr": false,
+    "mt.co.kr": false,
+    "sedaily.com": false,
+    "biz.chosun.com": true,
+    "fnnews.com": true,
+    "hankyung.com": true,
+    "infostockdaily.co.kr": true,
+    "mk.co.kr": true,
+    "mtn.co.kr": true,
+    "newspim.com": true,
+    "yna.co.kr": true
 }
