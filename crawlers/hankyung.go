@@ -17,7 +17,7 @@ const hankyungItemURL = ""
 type Hankyung struct{}
 
 func (c Hankyung) GetName() string {
-	return "fnnews"
+	return "hankyung"
 }
 
 func (c Hankyung) GetList(number int) ([]models.NewsItem, error) {
