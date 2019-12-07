@@ -1,6 +1,7 @@
 package crawlers
 
 import (
+	"flashnews/utils"
 	"fmt"
 	"net/http"
 	"strings"
@@ -110,7 +111,7 @@ func (c BizChosun) GetContents(item *models.NewsItem) error {
 	pars.Each(func(i int, sel *goquery.Selection) {
 		contents += strings.TrimSpace(sel.Text())
 	})
-	contents = strings.Replace(contents, "\n", "", -1)
+	contents = utils.TrimAll(contents)
 
 	item.Contents = contents
 	return nil
