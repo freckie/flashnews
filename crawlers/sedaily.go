@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"flashnews/models"
+	"flashnews/utils"
 
 	"github.com/PuerkitoBio/goquery"
 )
@@ -22,8 +23,8 @@ func (c Sedaily) GetName() string {
 func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
-	if number > 15 || number < 1 {
-		_number = 15
+	if number > 10 || number < 1 {
+		_number = 10
 	} else {
 		_number = number
 	}
@@ -46,31 +47,28 @@ func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("ul.news_list")
+	wrapper := html.Find("ul#newsList")
 	items := wrapper.Find("li")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
 		}
 
-		dlTag := sel.Find("dl")
-		aTag := dlTag.Find("a").First()
+		aTag := sel.Find("a").First()
 
 		href, ok := aTag.Attr("href")
 		if !ok {
 			result[i] = models.NewsItem{}
 			return
 		}
-		title := aTag.Text()
+		title := aTag.Find("h2").Text()
 		url := sedailyItemURL + href
-
-		date := dlTag.Find("span.letter").Text()
 
 		result[i] = models.NewsItem{
 			Title:    title,
 			URL:      url,
 			Contents: "",
-			Datetime: date,
+			Datetime: "",
 		}
 	})
 
@@ -96,13 +94,18 @@ func (c Sedaily) GetContents(item *models.NewsItem) error {
 	}
 
 	// Parsing
-	wrapper := html.Find("div.view_con.first_view_con")
-	remove := wrapper.Find("table").Text()
-	remove2 := wrapper.Find("div.sub_ad_banner10_m").Text()
-	remove3 := wrapper.Find("span").Text()
+	date := html.Find("div.article_info").Find("span").Text()
+	item.Datetime = strings.Replace(date, "입력", "", -1)
+
+	wrapper := html.Find("div.article")
+	remove := wrapper.Find("script").Text()
+	remove2 := wrapper.Find("div.ad_banner").Text()
+	remove3 := wrapper.Find("span.sub_ad_banner4").Text()
+	remove4 := wrapper.Find("div.al_cen").Text()
 	contents := strings.Replace(wrapper.Text(), remove, "", -1)
 	contents = strings.Replace(contents, remove2, "", -1)
-	item.Contents = strings.TrimSpace(strings.Replace(contents, remove3, "", -1))
+	contents = strings.Replace(contents, remove3, "", -1)
+	item.Contents = utils.TrimAll(strings.Replace(contents, remove4, "", -1))
 
 	return nil
 }
