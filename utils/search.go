@@ -27,13 +27,22 @@ func TitleCond(item models.NewsItem) bool {
 }
 
 // KeywordCond : 제목과 본문에 키워드가 있는지
-func KeywordCond(item models.NewsItem, keywords []string) ([]string, bool) {
+func KeywordCond(item models.NewsItem, keywords []string, filters []string) ([]string, bool) {
 	match := make([]string, 0)
 	isMatch := false
 
 	_title := strings.Replace(item.Title, " ", "", -1)
 	_contents := strings.Replace(item.Contents, " ", "", -1)
+	_firstWord := strings.Split(_title, " ")[0]
 
+	// Check Filters
+	for _, filter := range filters {
+		if strings.Contains(_firstWord, filter) {
+			return match, false
+		}
+	}
+
+	// Check Keywords
 	for _, keyword := range keywords {
 		if strings.Contains(_title, keyword) || strings.Contains(_contents, keyword) {
 			match = append(match, keyword)

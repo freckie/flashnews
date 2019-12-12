@@ -7,6 +7,7 @@
     "crawler": {
         "input_path": "./keywords.txt",
         "input_path2": "./news_config.json",
+        "input_path3": "./filters.txt",
         "delay_timer": 10000,
         "max_procs": 4,
         "keyword_detection_num": 3

@@ -17,6 +17,7 @@ type TelegramConfig struct {
 type CrawlerConfig struct {
 	InputPath           string `json:"input_path"`
 	InputPath2          string `json:"input_path2"`
+	InputPath3          string `json:"input_path3"`
 	DelayTimer          int64  `json:"delay_timer"`
 	MaxProcs            int    `json:"max_procs"`
 	KeywordDetectionNum int    `json:"keyword_detection_num"`
@@ -26,6 +27,7 @@ type Config struct {
 	Telegram TelegramConfig `json:"telegram"`
 	Crawler  CrawlerConfig  `json:"crawler"`
 	Keywords []string
+	Filters  []string
 }
 
 type NewsConfig struct {
@@ -71,6 +73,28 @@ func LoadNewsConfig(filePath string) (*NewsConfig, error) {
 }
 
 func LoadKeywords(filePath string) ([]string, error) {
+	result := make([]string, 0)
+
+	fo, err := os.Open(filePath)
+	if err != nil {
+		return result, err
+	}
+	defer fo.Close()
+
+	reader := bufio.NewReader(fo)
+	for {
+		line, isPrefix, err := reader.ReadLine()
+		if isPrefix || err != nil {
+			break
+		}
+		_line := strings.Replace(string(line), " ", "", -1)
+		result = append(result, _line)
+	}
+
+	return result, nil
+}
+
+func LoadFilters(filePath string) ([]string, error) {
 	result := make([]string, 0)
 
 	fo, err := os.Open(filePath)
