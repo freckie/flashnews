@@ -42,6 +42,12 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 		return err
 	}
 
+	// Filters
+	c.Cfg.Filters, err = config.LoadFilters(c.Cfg.Crawler.InputPath3)
+	if err != nil {
+		return err
+	}
+
 	// TG Engine
 	c.TG = &TGEngine{}
 	c.TG.Cfg = c.Cfg
@@ -154,7 +160,7 @@ func (c *Engine) Run() {
 								continue
 							}
 
-							detectKeywords, ok := utils.KeywordCond(data[idx], c.Cfg.Keywords)
+							detectKeywords, ok := utils.KeywordCond(data[idx], c.Cfg.Keywords, c.Cfg.Filters)
 							if ok && len(detectKeywords) >= c.Cfg.Crawler.KeywordDetectionNum {
 								go c.TG.SendMessage(data[idx], detectKeywords)
 							}
