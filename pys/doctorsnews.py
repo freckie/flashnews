@@ -14,7 +14,7 @@ for item in items[:1]:
     a_tag = div.find('a')
     title = a_tag.get_text().strip()
     href = 'http://www.doctorsnews.co.kr' + a_tag['href']
-    date = item.find('div', class_='list-dated').get_text().strip(' | ')[2].strip()
+    date = item.find('div', class_='list-dated').get_text().split(' | ')[2].strip()
 
     req2 = requests.get(href)
     bs2 = BeautifulSoup(req2.content, 'lxml')
