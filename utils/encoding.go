@@ -27,6 +27,16 @@ func ReadCP949(data string) (string, error) {
 	return strings.TrimSpace(string(b[:c])), nil
 }
 
+func ReadISO88591(data string) (string, error) {
+	var iso8859_1_buf []byte
+	iso8859_1_buf = []byte(data)
+	buf := make([]rune, len(iso8859_1_buf))
+	for i, b := range iso8859_1_buf {
+		buf[i] = rune(b)
+	}
+	return string(buf), nil
+}
+
 func StringSplit(data string, length int) string {
 	b := []byte(data)
 	idx := 0
