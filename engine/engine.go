@@ -97,6 +97,37 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.YNA {
 		c.Crawlers = append(c.Crawlers, crawlers.YNA{})
 	}
+	/* Group 3 */
+	if c.NewsCfg.BioSpectator {
+		c.Crawlers = append(c.Crawlers, crawlers.BioSpectator{})
+	}
+	if c.NewsCfg.DailyMedi {
+		c.Crawlers = append(c.Crawlers, crawlers.DailyMedi{})
+	}
+	if c.NewsCfg.DocDocDoc {
+		c.Crawlers = append(c.Crawlers, crawlers.Doc3{})
+	}
+	if c.NewsCfg.DoctorsNews {
+		c.Crawlers = append(c.Crawlers, crawlers.DoctorsNews{})
+	}
+	if c.NewsCfg.MDToday {
+		c.Crawlers = append(c.Crawlers, crawlers.MDToday{})
+	}
+	if c.NewsCfg.News1 {
+		c.Crawlers = append(c.Crawlers, crawlers.News1{})
+	}
+	if c.NewsCfg.Newsis {
+		c.Crawlers = append(c.Crawlers, crawlers.Newsis{})
+	}
+	if c.NewsCfg.NewsRun {
+		c.Crawlers = append(c.Crawlers, crawlers.NewsRun{})
+	}
+	if c.NewsCfg.PaxnetNews {
+		c.Crawlers = append(c.Crawlers, crawlers.PaxnetNews{})
+	}
+	if c.NewsCfg.Yakup {
+		c.Crawlers = append(c.Crawlers, crawlers.Yakup{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 
