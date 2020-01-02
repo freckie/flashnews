@@ -52,3 +52,15 @@ func KeywordCond(item models.NewsItem, keywords []string, filters []string) ([]s
 
 	return match, isMatch
 }
+
+// GetDateString : 해당 문자열에서 날짜 문자열을 추출
+func GetDateString(data string) (string, bool) {
+	comp, _ := regexp.Compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}")
+	result := comp.FindString(data)
+
+	if len(result) == 0 {
+		return "", false
+	} else {
+		return result, true
+	}
+}
