@@ -44,6 +44,16 @@ type NewsConfig struct {
 	MTN            bool `json:"mtn.co.kr"`
 	Newspim        bool `json:"newspim.com"`
 	YNA            bool `json:"yna.co.kr"`
+	BioSpectator   bool `json:"biospectator.com"`
+	DailyMedi      bool `json:"dailymedi.com"`
+	DocDocDoc      bool `json:"docdocdoc.co.kr"`
+	DoctorsNews    bool `json:"doctorsnews.co.kr"`
+	MDToday        bool `json:"mdtoday.co.kr"`
+	News1          bool `json:"news1.kr"`
+	Newsis         bool `json:"newsis.com"`
+	NewsRun        bool `json:"newsrun.co.kr"`
+	PaxnetNews     bool `json:"paxnetnews.com"`
+	Yakup          bool `json:"yakup.com"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
