@@ -67,10 +67,6 @@ func (c DoctorsNews) GetList(number int) ([]models.NewsItem, error) {
 		date := sel.Find("div.list-dated").Text()
 		date = strings.Split(date, " | ")[2]
 		title := aTag.Text()
-		if err != nil {
-			result[i] = models.NewsItem{}
-			return
-		}
 
 		result[i] = models.NewsItem{
 			Title:    title,

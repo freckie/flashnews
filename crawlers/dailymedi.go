@@ -64,10 +64,6 @@ func (c DailyMedi) GetList(number int) ([]models.NewsItem, error) {
 		url := dailyMediItemURL + href
 
 		date := sel.Find("font").Text()
-		if err != nil {
-			result[i] = models.NewsItem{}
-			return
-		}
 
 		result[i] = models.NewsItem{
 			Title:    "",

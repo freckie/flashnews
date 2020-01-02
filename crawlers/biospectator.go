@@ -65,10 +65,6 @@ func (c BioSpectator) GetList(number int) ([]models.NewsItem, error) {
 
 		date := sel.Find("span.date").Text()
 		title := utils.TrimAll(aTag.Text())
-		if err != nil {
-			result[i] = models.NewsItem{}
-			return
-		}
 
 		result[i] = models.NewsItem{
 			Title:    title,
