@@ -19,6 +19,10 @@ func (c BioSpectator) GetName() string {
 	return "biospectator"
 }
 
+func (c BioSpectator) GetGroup() string {
+	return "3"
+}
+
 func (c BioSpectator) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

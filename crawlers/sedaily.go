@@ -20,6 +20,10 @@ func (c Sedaily) GetName() string {
 	return "sedaily"
 }
 
+func (c Sedaily) GetGroup() string {
+	return "1"
+}
+
 func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

@@ -20,6 +20,10 @@ func (c MTN) GetName() string {
 	return "mtn"
 }
 
+func (c MTN) GetGroup() string {
+	return "2"
+}
+
 func (c MTN) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

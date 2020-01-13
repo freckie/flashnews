@@ -32,6 +32,10 @@ func (c Doc3) GetName() string {
 	return "doc3"
 }
 
+func (c Doc3) GetGroup() string {
+	return "3"
+}
+
 func (c Doc3) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

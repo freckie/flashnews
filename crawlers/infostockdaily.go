@@ -20,6 +20,10 @@ func (c InfoStockDaily) GetName() string {
 	return "infostockdaily"
 }
 
+func (c InfoStockDaily) GetGroup() string {
+	return "2"
+}
+
 func (c InfoStockDaily) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

@@ -19,6 +19,10 @@ func (c Yakup) GetName() string {
 	return "yakup"
 }
 
+func (c Yakup) GetGroup() string {
+	return "3"
+}
+
 func (c Yakup) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

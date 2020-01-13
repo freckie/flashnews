@@ -19,6 +19,10 @@ func (c Etoday) GetName() string {
 	return "etoday"
 }
 
+func (c Etoday) GetGroup() string {
+	return "1"
+}
+
 func (c Etoday) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

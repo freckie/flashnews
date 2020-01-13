@@ -19,6 +19,10 @@ func (c PaxnetNews) GetName() string {
 	return "paxnetnews"
 }
 
+func (c PaxnetNews) GetGroup() string {
+	return "3"
+}
+
 func (c PaxnetNews) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

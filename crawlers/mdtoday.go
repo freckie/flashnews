@@ -19,6 +19,10 @@ func (c MDToday) GetName() string {
 	return "mdtoday"
 }
 
+func (c MDToday) GetGroup() string {
+	return "3"
+}
+
 func (c MDToday) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

@@ -19,6 +19,10 @@ func (c Newspim) GetName() string {
 	return "newspim"
 }
 
+func (c Newspim) GetGroup() string {
+	return "2"
+}
+
 func (c Newspim) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

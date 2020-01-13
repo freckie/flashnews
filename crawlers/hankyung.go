@@ -20,6 +20,10 @@ func (c Hankyung) GetName() string {
 	return "hankyung"
 }
 
+func (c Hankyung) GetGroup() string {
+	return "2"
+}
+
 func (c Hankyung) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

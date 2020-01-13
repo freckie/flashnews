@@ -34,6 +34,10 @@ func (c News1) GetName() string {
 	return "news1"
 }
 
+func (c News1) GetGroup() string {
+	return "3"
+}
+
 func (c News1) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

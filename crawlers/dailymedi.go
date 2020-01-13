@@ -20,6 +20,10 @@ func (c DailyMedi) GetName() string {
 	return "dailymedi"
 }
 
+func (c DailyMedi) GetGroup() string {
+	return "3"
+}
+
 func (c DailyMedi) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int

@@ -19,6 +19,10 @@ func (c YNA) GetName() string {
 	return "yna"
 }
 
+func (c YNA) GetGroup() string {
+	return "2"
+}
+
 func (c YNA) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
