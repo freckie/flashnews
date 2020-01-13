@@ -79,7 +79,7 @@ func StringSplit(data string, length int) string {
 }
 
 func TrimAll(value string) string {
-	result := value
+	result := strings.TrimSpace(value)
 	for _, str := range stringsToRemove {
 		result = strings.Replace(result, str, "", -1)
 	}
