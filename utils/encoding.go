@@ -83,5 +83,6 @@ func TrimAll(value string) string {
 	for _, str := range stringsToRemove {
 		result = strings.Replace(result, str, "", -1)
 	}
+	result = strings.Replace(result, "\u00a0", " ", -1)
 	return result
 }
