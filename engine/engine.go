@@ -128,6 +128,40 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.Yakup {
 		c.Crawlers = append(c.Crawlers, crawlers.Yakup{})
 	}
+	/* Group 4 */
+	if c.NewsCfg.BusinessPost {
+		c.Crawlers = append(c.Crawlers, crawlers.BusinessPost{})
+	}
+	if c.NewsCfg.DDaily {
+		c.Crawlers = append(c.Crawlers, crawlers.DDaily{})
+	}
+	if c.NewsCfg.DT {
+		c.Crawlers = append(c.Crawlers, crawlers.DT{})
+	}
+	if c.NewsCfg.GENews {
+		c.Crawlers = append(c.Crawlers, crawlers.GENews{})
+	}
+	if c.NewsCfg.INews24 {
+		c.Crawlers = append(c.Crawlers, crawlers.INews24{})
+	}
+	if c.NewsCfg.InTheNews {
+		c.Crawlers = append(c.Crawlers, crawlers.InTheNews{})
+	}
+	if c.NewsCfg.Medipana {
+		c.Crawlers = append(c.Crawlers, crawlers.Medipana{})
+	}
+	if c.NewsCfg.Newsway {
+		c.Crawlers = append(c.Crawlers, crawlers.Newsway{})
+	}
+	if c.NewsCfg.Nspna {
+		c.Crawlers = append(c.Crawlers, crawlers.Nspna{})
+	}
+	if c.NewsCfg.SeoulWire {
+		c.Crawlers = append(c.Crawlers, crawlers.SeoulWire{})
+	}
+	if c.NewsCfg.TheBell {
+		c.Crawlers = append(c.Crawlers, crawlers.TheBell{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 

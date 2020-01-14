@@ -44,16 +44,29 @@ type NewsConfig struct {
 	MTN            bool `json:"mtn.co.kr"`
 	Newspim        bool `json:"newspim.com"`
 	YNA            bool `json:"yna.co.kr"`
-	BioSpectator   bool `json:"biospectator.com"`
-	DailyMedi      bool `json:"dailymedi.com"`
-	DocDocDoc      bool `json:"docdocdoc.co.kr"`
-	DoctorsNews    bool `json:"doctorsnews.co.kr"`
-	MDToday        bool `json:"mdtoday.co.kr"`
-	News1          bool `json:"news1.kr"`
-	Newsis         bool `json:"newsis.com"`
-	NewsRun        bool `json:"newsrun.co.kr"`
-	PaxnetNews     bool `json:"paxnetnews.com"`
-	Yakup          bool `json:"yakup.com"`
+	/* Group 3 */
+	BioSpectator bool `json:"biospectator.com"`
+	DailyMedi    bool `json:"dailymedi.com"`
+	DocDocDoc    bool `json:"docdocdoc.co.kr"`
+	DoctorsNews  bool `json:"doctorsnews.co.kr"`
+	MDToday      bool `json:"mdtoday.co.kr"`
+	News1        bool `json:"news1.kr"`
+	Newsis       bool `json:"newsis.com"`
+	NewsRun      bool `json:"newsrun.co.kr"`
+	PaxnetNews   bool `json:"paxnetnews.com"`
+	Yakup        bool `json:"yakup.com"`
+	/* Group 4 */
+	BusinessPost bool `json:"businesspost.co.kr"`
+	DDaily       bool `json:"ddaily.co.kr"`
+	DT           bool `json:"dt.co.kr"`
+	GENews       bool `json:"g-enews.com"`
+	INews24      bool `json:"inews24.com"`
+	InTheNews    bool `json:"inthenews.co.kr"`
+	Medipana     bool `json:"medipana.com"`
+	Newsway      bool `json:"newsway.co.kr"`
+	Nspna        bool `json:"nspna.com"`
+	SeoulWire    bool `json:"seoulwire.com"`
+	TheBell      bool `json:"thebell.co.kr"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
