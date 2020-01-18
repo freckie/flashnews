@@ -197,6 +197,13 @@ func (c *Engine) Run() {
 
 			// Main Loop in goroutine
 			for {
+				if errorCount[name] >= 5 {
+					c.Logger.Printf("[ERROR] crawler(%s) 에러 다발, 서버 문제로 추정, 당분간 대기.", name)
+					time.Sleep(time.Millisecond * time.Duration(1000*60*5))
+					errorCount[name] = 0
+					continue
+				}
+
 				// Get New Items
 				data, err := crawler.GetList(15)
 				if err != nil {
