@@ -16,7 +16,7 @@ const inTheNewsItemURL = ""
 type InTheNews struct{}
 
 func (c InTheNews) GetName() string {
-	return "inews24"
+	return "inthenews"
 }
 
 func (c InTheNews) GetGroup() string {
