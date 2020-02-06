@@ -10,7 +10,7 @@ bs = BeautifulSoup(req.content, 'lxml')
 wrapper = bs.find('div', class_='box01_0610_section')
 items = wrapper.find_all('div', class_='article_box_sl_section')
 
-for item in items[:5]:
+for item in items[:15]:
     a_tag = item.find('div', class_='title_text').find('a')
     href = 'http://m.newsprime.co.kr/' + a_tag['href']
     title = a_tag.get_text().strip()
