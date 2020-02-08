@@ -25,4 +25,5 @@ for idx, item in enumerate(items[:15]):
     print(title)
     print(href)
     print(date)
+    
     print(contents)
