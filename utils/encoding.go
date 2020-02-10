@@ -10,7 +10,7 @@ import (
 	"github.com/suapapa/go_hangul/encoding/cp949"
 )
 
-var /* const */ stringsToRemove = []string{"  ", "\t", "\n"}
+var /* const */ stringsToRemove = []string{"  ", "\t", "\n", "혻"}
 
 func ReadCP949(data string) (string, error) {
 	br := bytes.NewReader([]byte(data))
