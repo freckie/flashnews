@@ -162,6 +162,34 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.TheBell {
 		c.Crawlers = append(c.Crawlers, crawlers.TheBell{})
 	}
+	/* Group 5 */
+	if c.NewsCfg.NewsPrime {
+		c.Crawlers = append(c.Crawlers, crawlers.NewsPrime{})
+	}
+	if c.NewsCfg.PaxeTV {
+		c.Crawlers = append(c.Crawlers, crawlers.PaxeTV{})
+	}
+	if c.NewsCfg.DailyPharm {
+		c.Crawlers = append(c.Crawlers, crawlers.DailyPharm{})
+	}
+	if c.NewsCfg.SedailyGA05 {
+		c.Crawlers = append(c.Crawlers, crawlers.SedailyGA05{})
+	}
+	if c.NewsCfg.SedailyGA07 {
+		c.Crawlers = append(c.Crawlers, crawlers.SedailyGA07{})
+	}
+	if c.NewsCfg.RPM9 {
+		c.Crawlers = append(c.Crawlers, crawlers.RPM9{})
+	}
+	if c.NewsCfg.MediaPen {
+		c.Crawlers = append(c.Crawlers, crawlers.MediaPen{})
+	}
+	if c.NewsCfg.GameFocus {
+		c.Crawlers = append(c.Crawlers, crawlers.GameFocus{})
+	}
+	if c.NewsCfg.MTMoneys {
+		c.Crawlers = append(c.Crawlers, crawlers.MTMoneyS{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 

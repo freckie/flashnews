@@ -67,6 +67,16 @@ type NewsConfig struct {
 	Nspna        bool `json:"nspna.com"`
 	SeoulWire    bool `json:"seoulwire.com"`
 	TheBell      bool `json:"thebell.co.kr"`
+	/* Group 5 */
+	NewsPrime   bool `json:"newsprime.co.kr"`
+	PaxeTV      bool `json:"paxetv.com"`
+	DailyPharm  bool `json:"dailypharm.com"`
+	SedailyGA05 bool `json:"sedaily.com/NewsList/GA05"`
+	SedailyGA07 bool `json:"sedaily.com/NewsList/GA07"`
+	RPM9        bool `json:"rpm9.com"`
+	MediaPen    bool `json:"mediapen.com"`
+	GameFocus   bool `json:"gamefocus.co.kr"`
+	MTMoneys    bool `json:"moneys.mt.co.kr"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
