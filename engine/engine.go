@@ -233,7 +233,7 @@ func (c *Engine) Run() {
 				}
 
 				// Get New Items
-				data, err := crawler.GetList(15)
+				data, err := crawler.GetList(7)
 				if err != nil {
 					c.Logger.Printf("[ERROR] crawler.GetList() : crawler(%s) : %s", name, err)
 					errorCount[name]++

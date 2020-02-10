@@ -3,7 +3,7 @@ package crawlers
 import (
 	"fmt"
 	"net/http"
-	"strings"
+	"regexp"
 
 	"flashnews/models"
 	"flashnews/utils"
@@ -11,7 +11,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const sedailyCommonURL = "https://m.sedaily.com/News/NewsAll"
+const sedailyCommonURL = "https://m.sedaily.com/RankAll"
 const sedailyItemURL = "http://m.sedaily.com"
 
 type Sedaily struct{}
@@ -66,7 +66,7 @@ func (c Sedaily) GetList(number int) ([]models.NewsItem, error) {
 			return
 		}
 		title := aTag.Find("h2").Text()
-		url := sedailyItemURL + href
+		url := sedailyItemURL + href + "#_enliple"
 
 		result[i] = models.NewsItem{
 			Title:    title,
@@ -98,18 +98,24 @@ func (c Sedaily) GetContents(item *models.NewsItem) error {
 	}
 
 	// Parsing
-	date := html.Find("div.article_info").Find("span").Text()
-	item.Datetime = strings.Replace(date, "입력", "", -1)
+	date := html.Find("div.article_info").Find("span.url_txt").Text()
+	comp, _ := regexp.Compile("[0-9]{4}.[0-9]{2}.[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}")
+	result := comp.FindString(date)
+
+	if len(result) == 0 {
+		item.Datetime = "today"
+	} else {
+		item.Datetime = result
+	}
 
 	wrapper := html.Find("div.article")
-	remove := wrapper.Find("script").Text()
-	remove2 := wrapper.Find("div.ad_banner").Text()
-	remove3 := wrapper.Find("span.sub_ad_banner4").Text()
-	remove4 := wrapper.Find("div.al_cen").Text()
-	contents := strings.Replace(wrapper.Text(), remove, "", -1)
-	contents = strings.Replace(contents, remove2, "", -1)
-	contents = strings.Replace(contents, remove3, "", -1)
-	item.Contents = utils.TrimAll(strings.Replace(contents, remove4, "", -1))
+	contents := ""
+	wrapper.Contents().Each(func(i int, sel *goquery.Selection) {
+		if goquery.NodeName(sel) == "#text" {
+			contents += (utils.TrimAll(sel.Text()) + " ")
+		}
+	})
+	item.Contents = contents
 
 	return nil
 }
