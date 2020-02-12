@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+var CondExceptionCrawlers = []string{"gamefocus"}
+
 // Engine : Crawling Main Engine
 type Engine struct {
 	Logger   *log.Logger
@@ -252,7 +254,20 @@ func (c *Engine) Run() {
 				// Detect New Item
 				for idx, _ := range data {
 					if !utils.IsContain(data[idx].URL, prevData[name]) { // New Item
-						if utils.TitleCond(data[idx]) { // if TitleCond true
+						// Exceptions (do not check title/keyword condition)
+						if utils.IsContain(crawler.GetName(), CondExceptionCrawlers) {
+							err = crawler.GetContents(&data[idx])
+							if err != nil {
+								c.Logger.Printf("[ERROR] crawler.GetContents() : crawler(%s) : idx(%d) : %s", name, idx, err)
+								errorCount[name]++
+								continue
+							}
+							go c.TG.SendMessage(data[idx], []string{""})
+							continue
+						}
+
+						// if TitleCond true
+						if utils.TitleCond(data[idx]) {
 							err = crawler.GetContents(&data[idx])
 							if err != nil {
 								c.Logger.Printf("[ERROR] crawler.GetContents() : crawler(%s) : idx(%d) : %s", name, idx, err)

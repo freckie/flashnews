@@ -12,7 +12,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const gameFocusCommonURL = "http://www.gamefocus.co.kr/html_file.php?file=normal_all_news.html"
+const gameFocusCommonURL = "http://www.gamefocus.co.kr/ajax_section.php?ajaxNum=2&ajaxLayer=section_ajax_layer_2&thread=22r02&pg=1&vals=%EC%9E%90%EB%8F%99%2C%EC%A0%84%EC%B2%B4%2C%EC%B4%9D1%2F15%EA%B0%9C%EC%B6%9C%EB%A0%A5%2C%EC%A0%9C%EB%AA%A954%EC%9E%90%EC%9E%90%EB%A6%84%2C%EB%B3%B8%EB%AC%B8270%EC%9E%90%EC%9E%90%EB%A6%84%2C%ED%88%AC%EB%AA%85%EC%83%89%2C%EB%88%84%EB%9D%BD0%EA%B0%9C%2C%EC%A0%84%EC%B2%B4%EB%89%B4%EC%8A%A4%EC%B6%9C%EB%A0%A5%2C%EC%9D%B4%EB%AF%B8%EC%A7%80%EA%B0%80%EB%A1%9C%ED%94%BD%EC%85%8080%2F53%2Csub_news_rows_21_1.html%2C%EC%9E%90%EB%8F%99%2C%ED%8E%98%EC%9D%B4%EC%A7%95%2C"
 const gameFocusItemURL = "http://www.gamefocus.co.kr/"
 
 var regexDate = regexp.MustCompile(`(년|월)`)
@@ -31,8 +31,8 @@ func (c GameFocus) GetGroup() string {
 func (c GameFocus) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
-	if number > 15 || number < 1 {
-		_number = 15
+	if number > 10 || number < 1 {
+		_number = 10
 	} else {
 		_number = number
 	}
@@ -56,7 +56,8 @@ func (c GameFocus) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("div.f_l").Find("table > tbody")
+	wrapper := html.Find("table > tbody")
+	// wrapper := html.Find("div.f_l").Find("table > tbody")
 	wrapper.ChildrenFiltered("tr").Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
@@ -110,6 +111,12 @@ func (c GameFocus) GetContents(item *models.NewsItem) error {
 	wrapper.Find("p").Each(func(idx int, sel *goquery.Selection) {
 		contents += (utils.TrimAll(sel.Text()) + " ")
 	})
+
+	if contents == "" {
+		wrapper.Find("font").Each(func(idx int, sel *goquery.Selection) {
+			contents += (utils.TrimAll(sel.Text()) + " ")
+		})
+	}
 
 	item.Title = title
 	item.Datetime = date
