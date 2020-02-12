@@ -12,4 +12,4 @@ for it in subfolders:
     proc = subprocess.call('start ./main.exe "{}"'.format(path), shell=True)
     print('LOG: {} 폴더 실행.'.format(it))
 
-print('일괄 실행 스크립트 종료.')
+input('일괄 구동 완료. 본 프로그램은 종료해주세요.')
