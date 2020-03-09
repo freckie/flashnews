@@ -11,5 +11,9 @@
         "delay_timer": 10000,
         "max_procs": 4,
         "keyword_detection_num": 3
+    },
+    "sound": {
+        "on": true,
+        "file_path": "test.mp3"
     }
 }

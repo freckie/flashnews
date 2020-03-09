@@ -10,20 +10,20 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const newsPrimeCommonURL = "http://m.newsprime.co.kr/section_list.html?sec_no=56&menu=index"
-const newsPrimeItemURL = "http://m.newsprime.co.kr/"
+const newsPrime57CommonURL = "http://m.newsprime.co.kr/section_list.html?sec_no=57&menu=index"
+const newsPrime57ItemURL = "http://m.newsprime.co.kr/"
 
-type NewsPrime struct{}
+type NewsPrime57 struct{}
 
-func (c NewsPrime) GetName() string {
-	return "newsprime"
+func (c NewsPrime57) GetName() string {
+	return "newsprime57"
 }
 
-func (c NewsPrime) GetGroup() string {
-	return "5"
+func (c NewsPrime57) GetGroup() string {
+	return "6"
 }
 
-func (c NewsPrime) GetList(number int) ([]models.NewsItem, error) {
+func (c NewsPrime57) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
 	if number > 15 || number < 1 {
@@ -34,7 +34,7 @@ func (c NewsPrime) GetList(number int) ([]models.NewsItem, error) {
 	result := make([]models.NewsItem, _number)
 
 	// Request
-	req, err := http.Get(newsPrimeCommonURL)
+	req, err := http.Get(newsPrime57CommonURL)
 	if err != nil {
 		return result, err
 	}
@@ -64,7 +64,7 @@ func (c NewsPrime) GetList(number int) ([]models.NewsItem, error) {
 			result[i] = models.NewsItem{}
 			return
 		}
-		url := newsPrimeItemURL + href
+		url := newsPrime57ItemURL + href
 		title := aTag.Text()
 
 		result[i] = models.NewsItem{
@@ -78,7 +78,7 @@ func (c NewsPrime) GetList(number int) ([]models.NewsItem, error) {
 	return result, nil
 }
 
-func (c NewsPrime) GetContents(item *models.NewsItem) error {
+func (c NewsPrime57) GetContents(item *models.NewsItem) error {
 	// Request
 	req, err := http.Get(item.URL)
 	if err != nil {

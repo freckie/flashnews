@@ -23,9 +23,15 @@ type CrawlerConfig struct {
 	KeywordDetectionNum int    `json:"keyword_detection_num"`
 }
 
+type SoundConfig struct {
+	On       bool   `json:"on"`
+	FilePath string `json:"file_path"`
+}
+
 type Config struct {
 	Telegram TelegramConfig `json:"telegram"`
 	Crawler  CrawlerConfig  `json:"crawler"`
+	Sound    SoundConfig    `json:"sound"`
 	Keywords []string
 	Filters  []string
 }
@@ -77,6 +83,10 @@ type NewsConfig struct {
 	MediaPen    bool `json:"mediapen.com"`
 	GameFocus   bool `json:"gamefocus.co.kr"`
 	MTMoneys    bool `json:"moneys.mt.co.kr"`
+	/* Group 6 */
+	Nspna11     bool `json:"nspna.com/news/?cid=11"`
+	Nspna21     bool `json:"nspna.com/news/?cid=21"`
+	NewsPrime57 bool `json:"newsprime.co.kr/section_list_all/?sec_no=57"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {

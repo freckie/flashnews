@@ -3,6 +3,7 @@ package crawlers
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"flashnews/models"
 	"flashnews/utils"
@@ -10,31 +11,31 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const newsPrimeCommonURL = "http://m.newsprime.co.kr/section_list.html?sec_no=56&menu=index"
-const newsPrimeItemURL = "http://m.newsprime.co.kr/"
+const nspna11CommonURL = "http://www.nspna.com/news/?cid=11"
+const nspna11ItemURL = "http://www.nspna.com"
 
-type NewsPrime struct{}
+type Nspna11 struct{}
 
-func (c NewsPrime) GetName() string {
-	return "newsprime"
+func (c Nspna11) GetName() string {
+	return "nspna11"
 }
 
-func (c NewsPrime) GetGroup() string {
-	return "5"
+func (c Nspna11) GetGroup() string {
+	return "6"
 }
 
-func (c NewsPrime) GetList(number int) ([]models.NewsItem, error) {
+func (c Nspna11) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
-	if number > 15 || number < 1 {
-		_number = 15
+	if number > 10 || number < 1 {
+		_number = 10
 	} else {
 		_number = number
 	}
 	result := make([]models.NewsItem, _number)
 
 	// Request
-	req, err := http.Get(newsPrimeCommonURL)
+	req, err := http.Get(nspna11CommonURL)
 	if err != nil {
 		return result, err
 	}
@@ -51,34 +52,37 @@ func (c NewsPrime) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("div.box01_0610_section")
-	items := wrapper.Find("div.article_box_sl_section")
+	wrapper := html.Find("div#news_list")
+	items := wrapper.Find("div.news_panel")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
 		}
 
-		aTag := sel.Find("div.title_text").Find("a")
+		aTag := sel.Find("a")
 		href, ok := aTag.Attr("href")
 		if !ok {
 			result[i] = models.NewsItem{}
 			return
 		}
-		url := newsPrimeItemURL + href
-		title := aTag.Text()
+		url := nspna11ItemURL + href
+
+		dateSplit := strings.Split(sel.Find("div.info").Text(), " | ")
+		date := dateSplit[1]
+		title := sel.Find("div.subject").Text()
 
 		result[i] = models.NewsItem{
 			Title:    title,
 			URL:      url,
 			Contents: "",
-			Datetime: "",
+			Datetime: date,
 		}
 	})
 
 	return result, nil
 }
 
-func (c NewsPrime) GetContents(item *models.NewsItem) error {
+func (c Nspna11) GetContents(item *models.NewsItem) error {
 	// Request
 	req, err := http.Get(item.URL)
 	if err != nil {
@@ -97,16 +101,13 @@ func (c NewsPrime) GetContents(item *models.NewsItem) error {
 	}
 
 	// Parsing
-	hdTag := html.Find("div.hd")
-	title := utils.TrimAll(hdTag.Find("p.tit").Text())
-	date := utils.TrimAll(hdTag.Find("p.data").Text())
+	wrapper := html.Find("div#CmAdContent")
+	contents := ""
+	wrapper.Find("p.section_txt").Each(func(idx int, sel *goquery.Selection) {
+		contents += sel.Text()
+	})
+	contents = utils.TrimAll(contents)
 
-	wrapper := html.Find("div.stit2")
-	contents := utils.TrimAll(wrapper.Text())
-
-	item.Title = title
 	item.Contents = contents
-	item.Datetime = date
-
 	return nil
 }

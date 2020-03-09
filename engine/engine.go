@@ -17,6 +17,7 @@ type Engine struct {
 	Cfg      *config.Config
 	NewsCfg  *config.NewsConfig
 	TG       *TGEngine
+	SE       *SoundEngine
 	Crawlers []crawlers.Crawler
 }
 
@@ -57,6 +58,16 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if err != nil {
 		return err
 	}
+	c.Logger.Println("Telegram Engine 세팅 완료!")
+
+	// Sound Engine
+	c.SE = &SoundEngine{}
+	err = c.SE.Init(c.Cfg.Sound.On, c.Cfg.Sound.FilePath)
+	if err != nil {
+		return err
+	}
+	c.Logger.Println("Sound Engine 세팅 완료! 테스트용으로 사운드를 한 번 재생합니다.")
+	c.SE.Play()
 
 	// Setup Crawlers
 	c.Crawlers = make([]crawlers.Crawler, 0)
@@ -192,6 +203,16 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.MTMoneys {
 		c.Crawlers = append(c.Crawlers, crawlers.MTMoneyS{})
 	}
+	/* Group 6 */
+	if c.NewsCfg.Nspna11 {
+		c.Crawlers = append(c.Crawlers, crawlers.Nspna11{})
+	}
+	if c.NewsCfg.Nspna21 {
+		c.Crawlers = append(c.Crawlers, crawlers.Nspna21{})
+	}
+	if c.NewsCfg.NewsPrime57 {
+		c.Crawlers = append(c.Crawlers, crawlers.NewsPrime57{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 
@@ -262,7 +283,11 @@ func (c *Engine) Run() {
 								errorCount[name]++
 								continue
 							}
-							go c.TG.SendMessage(data[idx], []string{""})
+							// Messaging Goroutine
+							go func() {
+								c.TG.SendMessage(data[idx], []string{""})
+								c.SE.Play()
+							}()
 							continue
 						}
 
