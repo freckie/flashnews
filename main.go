@@ -23,7 +23,7 @@ func main() {
 		// Get config file path from os.Args
 		var configPath string
 		args := os.Args
-		if len(args) < 1 {
+		if len(args) <= 1 {
 			configPath = "config.json"
 		} else {
 			configPath = args[1]
