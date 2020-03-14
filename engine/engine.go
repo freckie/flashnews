@@ -10,6 +10,7 @@ import (
 )
 
 var CondExceptionCrawlers = []string{"gamefocus"}
+var CondOnlyContentsCrawlers = []string{"newsprime", "newsprime57"}
 
 // Engine : Crawling Main Engine
 type Engine struct {
@@ -291,8 +292,8 @@ func (c *Engine) Run() {
 							continue
 						}
 
-						// if TitleCond true
-						if utils.TitleCond(data[idx]) {
+						// if TitleCond true (or if the crawler is in CondOnlyContentsCrawlers)
+						if utils.TitleCond(data[idx]) || utils.IsContain(crawler.GetName(), CondOnlyContentsCrawlers) {
 							err = crawler.GetContents(&data[idx])
 							if err != nil {
 								c.Logger.Printf("[ERROR] crawler.GetContents() : crawler(%s) : idx(%d) : %s", name, idx, err)
