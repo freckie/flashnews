@@ -303,7 +303,11 @@ func (c *Engine) Run() {
 
 							detectKeywords, ok := utils.KeywordCond(data[idx], c.Cfg.Keywords, c.Cfg.Filters)
 							if ok && len(detectKeywords) >= c.Cfg.Crawler.KeywordDetectionNum {
-								go c.TG.SendMessage(data[idx], detectKeywords)
+								go func() {
+									c.TG.SendMessage(data[idx], detectKeywords)
+									c.SE.Play()
+								}()
+								continue
 							}
 						}
 					}
