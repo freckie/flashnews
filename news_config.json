@@ -42,7 +42,12 @@
     "mediapen.com": false,
     "gamefocus.co.kr": false,
     "moneys.mt.co.kr": false,
-    "nspna.com/news/?cid=11": true,
-    "nspna.com/news/?cid=21": true,
-    "newsprime.co.kr/section_list_all/?sec_no=57": true
+    "nspna.com/news/?cid=11": false,
+    "nspna.com/news/?cid=21": false,
+    "newsprime.co.kr/section_list_all/?sec_no=57": false,
+    "ceoscoredaily.com": true,
+    "etnews.com": true,
+    "kmedinfo.co.kr": true,
+    "viva100.com": true,
+    "zdnet.co.kr": true
 }

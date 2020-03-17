@@ -87,6 +87,12 @@ type NewsConfig struct {
 	Nspna11     bool `json:"nspna.com/news/?cid=11"`
 	Nspna21     bool `json:"nspna.com/news/?cid=21"`
 	NewsPrime57 bool `json:"newsprime.co.kr/section_list_all/?sec_no=57"`
+	/* Group 7 */
+	CEOScoreDaily bool `json:"ceoscoredaily.com"`
+	ETNews        bool `json:"etnews.com"`
+	KmedInfo      bool `json:"kmedinfo.co.kr"`
+	Viva100       bool `json:"viva100.com"`
+	ZDNet         bool `json:"zdnet.co.kr"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {

@@ -214,6 +214,22 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.NewsPrime57 {
 		c.Crawlers = append(c.Crawlers, crawlers.NewsPrime57{})
 	}
+	/* Group 7 */
+	if c.NewsCfg.CEOScoreDaily {
+		c.Crawlers = append(c.Crawlers, crawlers.CEOScoreDaily{})
+	}
+	if c.NewsCfg.ETNews {
+		c.Crawlers = append(c.Crawlers, crawlers.ETNews{})
+	}
+	if c.NewsCfg.KmedInfo {
+		c.Crawlers = append(c.Crawlers, crawlers.KmedInfo{})
+	}
+	if c.NewsCfg.Viva100 {
+		c.Crawlers = append(c.Crawlers, crawlers.Viva100{})
+	}
+	if c.NewsCfg.ZDNet {
+		c.Crawlers = append(c.Crawlers, crawlers.ZDNet{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 
@@ -285,10 +301,8 @@ func (c *Engine) Run() {
 								continue
 							}
 							// Messaging Goroutine
-							go func() {
-								c.TG.SendMessage(data[idx], []string{""})
-								c.SE.Play()
-							}()
+							go c.TG.SendMessage(data[idx], []string{""})
+							go c.SE.Play()
 							continue
 						}
 
@@ -303,10 +317,8 @@ func (c *Engine) Run() {
 
 							detectKeywords, ok := utils.KeywordCond(data[idx], c.Cfg.Keywords, c.Cfg.Filters)
 							if ok && len(detectKeywords) >= c.Cfg.Crawler.KeywordDetectionNum {
-								go func() {
-									c.TG.SendMessage(data[idx], detectKeywords)
-									c.SE.Play()
-								}()
+								go c.TG.SendMessage(data[idx], detectKeywords)
+								go c.SE.Play()
 								continue
 							}
 						}

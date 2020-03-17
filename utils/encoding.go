@@ -68,6 +68,29 @@ func ReadISO88591(data string) (string, error) {
 	return string(result), nil
 }
 
+func ReadISO88591toUTF8(data string) (string, error) {
+	iso8859_1_buf := []byte(data)
+
+	buf := make([]rune, len(iso8859_1_buf))
+	for i, b := range iso8859_1_buf {
+		buf[i] = rune(b)
+	}
+
+	dec := charmap.ISO8859_1.NewEncoder()
+	out, err := dec.Bytes([]byte(string(buf)))
+	if err != nil {
+		return "", err
+	}
+
+	// result, err := ReadCP949Bytes(out)
+	// if err != nil {
+	// 	return "", err
+	// }
+	result := out
+
+	return string(result), nil
+}
+
 func StringSplit(data string, length int) string {
 	b := []byte(data)
 	idx := 0
