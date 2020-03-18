@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-var CondExceptionCrawlers = []string{"gamefocus"}
+var CondExceptionCrawlers = []string{"gamefocus", "newsprime67"}
 var CondOnlyContentsCrawlers = []string{"newsprime", "newsprime57"}
 
 // Engine : Crawling Main Engine
