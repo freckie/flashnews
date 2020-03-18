@@ -88,6 +88,7 @@ type NewsConfig struct {
 	Nspna21     bool `json:"nspna.com/news/?cid=21"`
 	NewsPrime57 bool `json:"newsprime.co.kr/section_list_all/?sec_no=57"`
 	/* Group 7 */
+	NewsPrime67   bool `json:"newsprime.co.kr/section_list_all/?sec_no=67"`
 	CEOScoreDaily bool `json:"ceoscoredaily.com"`
 	ETNews        bool `json:"etnews.com"`
 	KmedInfo      bool `json:"kmedinfo.co.kr"`

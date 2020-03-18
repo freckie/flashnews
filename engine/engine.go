@@ -215,6 +215,9 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 		c.Crawlers = append(c.Crawlers, crawlers.NewsPrime57{})
 	}
 	/* Group 7 */
+	if c.NewsCfg.NewsPrime67 {
+		c.Crawlers = append(c.Crawlers, crawlers.NewsPrime67{})
+	}
 	if c.NewsCfg.CEOScoreDaily {
 		c.Crawlers = append(c.Crawlers, crawlers.CEOScoreDaily{})
 	}
