@@ -94,6 +94,13 @@ type NewsConfig struct {
 	KmedInfo      bool `json:"kmedinfo.co.kr"`
 	Viva100       bool `json:"viva100.com"`
 	ZDNet         bool `json:"zdnet.co.kr"`
+	/* Group 8 */
+	AjuNews        bool `json:"ajunews.com"`
+	EBN            bool `json:"ebn.co.kr"`
+	KMIB           bool `json:"news.kmib.co.kr"`
+	MedicalTimes   bool `json:"medicaltimes.com"`
+	TF             bool `json:"news.tf.co.kr"`
+	GameFocus22r09 bool `json:"gamefocus.co.kr/section.php?thread=22r09"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {

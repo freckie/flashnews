@@ -233,6 +233,25 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.ZDNet {
 		c.Crawlers = append(c.Crawlers, crawlers.ZDNet{})
 	}
+	/* Group 8 */
+	if c.NewsCfg.AjuNews {
+		c.Crawlers = append(c.Crawlers, crawlers.AjuNews{})
+	}
+	if c.NewsCfg.EBN {
+		c.Crawlers = append(c.Crawlers, crawlers.EBN{})
+	}
+	if c.NewsCfg.KMIB {
+		c.Crawlers = append(c.Crawlers, crawlers.KMIB{})
+	}
+	if c.NewsCfg.MedicalTimes {
+		c.Crawlers = append(c.Crawlers, crawlers.MedicalTimes{})
+	}
+	if c.NewsCfg.TF {
+		c.Crawlers = append(c.Crawlers, crawlers.TF{})
+	}
+	if c.NewsCfg.GameFocus22r09 {
+		c.Crawlers = append(c.Crawlers, crawlers.GameFocus22r09{})
+	}
 
 	c.Logger.Println("세팅 완료!")
 

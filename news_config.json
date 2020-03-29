@@ -45,10 +45,16 @@
     "nspna.com/news/?cid=11": false,
     "nspna.com/news/?cid=21": false,
     "newsprime.co.kr/section_list_all/?sec_no=57": false,
-    "newsprime.co.kr/section_list_all/?sec_no=67": true,
-    "ceoscoredaily.com": true,
-    "etnews.com": true,
-    "kmedinfo.co.kr": true,
-    "viva100.com": true,
-    "zdnet.co.kr": true
+    "newsprime.co.kr/section_list_all/?sec_no=67": false,
+    "ceoscoredaily.com": false,
+    "etnews.com": false,
+    "kmedinfo.co.kr": false,
+    "viva100.com": false,
+    "zdnet.co.kr": false,
+    "ajunews.com": true,
+    "ebn.co.kr": true,
+    "news.kmib.co.kr": true,
+    "medicaltimes.com": true,
+    "news.tf.co.kr": true,
+    "gamefocus.co.kr/section.php?thread=22r09": true
 }
