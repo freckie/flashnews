@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-var CondExceptionCrawlers = []string{"gamefocus", "newsprime67"}
-var CondOnlyContentsCrawlers = []string{"newsprime", "newsprime57"}
+var CondExceptionCrawlers = []string{"gamefocus", "newsprime67", "gamefocus22r09"}
+var CondOnlyContentsCrawlers = []string{"newsprime", "newsprime57", "medicaltimes"}
 
 // Engine : Crawling Main Engine
 type Engine struct {
@@ -253,7 +253,7 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 		c.Crawlers = append(c.Crawlers, crawlers.GameFocus22r09{})
 	}
 
-	c.Logger.Println("세팅 완료!")
+	c.Logger.Println("Crawler 세팅 완료!")
 
 	return nil
 }
