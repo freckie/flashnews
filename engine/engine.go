@@ -252,6 +252,22 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.GameFocus22r09 {
 		c.Crawlers = append(c.Crawlers, crawlers.GameFocus22r09{})
 	}
+	/* Group 9 */
+	if c.NewsCfg.LawIssue {
+		c.Crawlers = append(c.Crawlers, crawlers.LawIssue{})
+	}
+	if c.NewsCfg.YouthDaily {
+		c.Crawlers = append(c.Crawlers, crawlers.YouthDaily{})
+	}
+	if c.NewsCfg.KukiNews {
+		c.Crawlers = append(c.Crawlers, crawlers.KukiNews{})
+	}
+	if c.NewsCfg.WowTV {
+		c.Crawlers = append(c.Crawlers, crawlers.WowTV{})
+	}
+	if c.NewsCfg.NewsPrimeYMH {
+		c.Crawlers = append(c.Crawlers, crawlers.NewsPrimeYMH{})
+	}
 
 	c.Logger.Println("Crawler 세팅 완료!")
 

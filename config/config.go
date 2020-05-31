@@ -101,6 +101,12 @@ type NewsConfig struct {
 	MedicalTimes   bool `json:"medicaltimes.com"`
 	TF             bool `json:"news.tf.co.kr"`
 	GameFocus22r09 bool `json:"gamefocus.co.kr/section.php?thread=22r09"`
+	/* Group 9 */
+	LawIssue     bool `json:"lawissue.co.kr"`
+	YouthDaily   bool `json:"youthdaily.co.kr"`
+	KukiNews     bool `json:"kukinews.com"`
+	WowTV        bool `json:"wowtv.co.kr"`
+	NewsPrimeYMH bool `json:"newsprime.co.kr/article_list_writer/?name=양민호+기자"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
