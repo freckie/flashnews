@@ -3,6 +3,7 @@ package crawlers
 import (
 	"fmt"
 	"net/http"
+	"regexp"
 	"strings"
 
 	"flashnews/models"
@@ -11,8 +12,10 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const edailyCommonURL = "https://www.edaily.co.kr/news/realtime/realtime_NewsList_1.asp"
+const edailyCommonURL = "https://www.edaily.co.kr/news/realtimenews"
 const edailyItemURL = "https://www.edaily.co.kr/news/realtime/realtime_NewsRead.asp?newsid="
+
+var regexNewsID = regexp.MustCompile(`[0-9]+`)
 
 type Edaily struct{}
 
@@ -56,8 +59,8 @@ func (c Edaily) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("ul")
-	items := wrapper.Find("li")
+	wrapper := html.Find("div.news_list")
+	items := wrapper.Find("dl")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
@@ -69,22 +72,21 @@ func (c Edaily) GetList(number int) ([]models.NewsItem, error) {
 			result[i] = models.NewsItem{}
 			return
 		}
-		id := reForNumbers.FindString(href)
+		id := regexNewsID.FindString(href)
 		url := edailyItemURL + id
 
-		title := aTag.AttrOr("title", aTag.Text())
-		date := sel.Find("span").Text()
+		title := aTag.Find("span").Text()
 
-		title, err = utils.ReadCP949(title)
+		title, err = utils.ReadISO88591toUTF8(title)
 		if err != nil {
 			result[i] = models.NewsItem{}
 		}
 
 		result[i] = models.NewsItem{
-			Title:    title,
+			Title:    utils.TrimAll(title),
 			URL:      url,
 			Contents: "",
-			Datetime: date,
+			Datetime: "",
 		}
 	})
 
@@ -110,34 +112,25 @@ func (c Edaily) GetContents(item *models.NewsItem) error {
 		return err
 	}
 
+	// Parse Datetime
+	timeStr := html.Find("p.newsdate").Text()
+	datetime := strings.Split(timeStr, " | ")[1]
+
 	// Parsing
 	wrapper := html.Find("div#viewcontent")
-	remove := wrapper.Find("div.ovh").Text()
-	if remove != "" {
-		remove, err = utils.ReadCP949(remove)
-		if err != nil {
-			return err
+	contents := ""
+	wrapper.Contents().Each(func(i int, sel *goquery.Selection) {
+		if goquery.NodeName(sel) == "#text" {
+			text, err := utils.ReadCP949(sel.Text())
+			if err != nil {
+				text = ""
+			}
+			contents += (utils.TrimAll(text) + " ")
 		}
-	}
-	remove2 := wrapper.Find("font").Text()
-	if remove2 != "" {
-		remove2, err = utils.ReadCP949(remove2)
-		if err != nil {
-			return err
-		}
-	}
+	})
 
-	contents := wrapper.Text()
-	contents, err = utils.ReadCP949(contents)
-	if err != nil {
-		return err
-	}
+	item.Contents = contents
+	item.Datetime = datetime
 
-	contents = strings.Replace(contents, remove, "", -1)
-	contents = strings.Replace(contents, remove2, "", -1)
-	contents = strings.Replace(contents, "\n", "", -1)
-	contents = strings.Replace(contents, "\t", "", -1)
-	item.Contents = strings.TrimSpace(strings.Replace(contents, "  ", "", -1))
-	//ovh mt20
 	return nil
 }
