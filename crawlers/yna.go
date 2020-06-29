@@ -51,35 +51,42 @@ func (c YNA) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("div.headlines.headline-list")
-	items := wrapper.Find("li.section02")
+	wrapper := html.Find("div.list-type038").Find("ul.list")
+	items := wrapper.Find("li")
+	cnt := 0
 	items.Each(func(i int, sel *goquery.Selection) {
-		if i >= _number {
+		if cnt >= _number {
 			return
 		}
 
-		dt := sel.Find("strong.news-tl")
-		aTag := dt.Find("a")
+		if sel.HasClass("aside-bnr07") {
+			return
+		}
+
+		aTag := sel.Find("a.tit-wrap")
 		href, ok := aTag.Attr("href")
 		if !ok {
-			result[i] = models.NewsItem{}
+			result[cnt] = models.NewsItem{}
+			cnt += 1
 			return
 		}
 		url := ynaItemURL + href
 
-		date := sel.Find("span.p-time").Text()
-		title := aTag.Text()
+		date := sel.Find("span.txt-time").Text()
+		title := aTag.Find("strong.tit-news").Text()
 		if err != nil {
-			result[i] = models.NewsItem{}
+			result[cnt] = models.NewsItem{}
+			cnt += 1
 			return
 		}
 
-		result[i] = models.NewsItem{
+		result[cnt] = models.NewsItem{
 			Title:    title,
 			URL:      url,
 			Contents: "",
 			Datetime: date,
 		}
+		cnt += 1
 	})
 
 	return result, nil
@@ -107,6 +114,9 @@ func (c YNA) GetContents(item *models.NewsItem) error {
 	wrapper := html.Find("div.article")
 	contents := ""
 	wrapper.Find("p").Each(func(idx int, sel *goquery.Selection) {
+		if sel.HasClass("adrs") {
+			return
+		}
 		contents += sel.Text()
 	})
 	contents = utils.TrimAll(contents)
