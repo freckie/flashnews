@@ -26,8 +26,8 @@ func (c NewsPrimeYMH) GetGroup() string {
 func (c NewsPrimeYMH) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
-	if number > 15 || number < 1 {
-		_number = 15
+	if number > 5 || number < 1 {
+		_number = 5
 	} else {
 		_number = number
 	}
@@ -52,13 +52,13 @@ func (c NewsPrimeYMH) GetList(number int) ([]models.NewsItem, error) {
 
 	// Parsing
 	wrapper := html.Find("div.box01_0610_section")
-	items := wrapper.Find("div.article_box_sl_section")
+	items := wrapper.Find("div.article_box_sl_section, .article_box_sl_section")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
 		}
 
-		aTag := sel.Find("div.title_text").Find("a")
+		aTag := sel.Find("div.title_text, .title_text_none").Find("a")
 		href, ok := aTag.Attr("href")
 		if !ok {
 			result[i] = models.NewsItem{}
