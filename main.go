@@ -1,3 +1,5 @@
+//go:generate goversioninfo -file-version="v1.9.2"
+
 package main
 
 import (
