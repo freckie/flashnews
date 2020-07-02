@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-var CondExceptionCrawlers = []string{"gamefocus", "newsprime67", "gamefocus22r09"}
-var CondOnlyContentsCrawlers = []string{"newsprime", "newsprime57", "medicaltimes"}
+var CondExceptionCrawlers = []string{"gamefocus", "gamefocus22r09"}
+var CondOnlyContentsCrawlers = []string{"medicaltimes"}
 
 // Engine : Crawling Main Engine
 type Engine struct {
