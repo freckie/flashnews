@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"errors"
 	"log"
 	"strings"
 
@@ -11,9 +12,12 @@ import (
 	telegram "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
+const MaxPrevMessageQueueSize = 5
+
 type TGEngine struct {
-	Bot *telegram.BotAPI
-	Cfg *config.Config
+	Bot          *telegram.BotAPI
+	Cfg          *config.Config
+	PrevMessages []string
 }
 
 func (tg *TGEngine) GenerateBot() error {
@@ -27,6 +31,11 @@ func (tg *TGEngine) GenerateBot() error {
 }
 
 func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
+	if tg.IsDuplicated(item) {
+		return errors.New("Message Duplicated.")
+	}
+	tg.AddMessage(item)
+
 	keywordStr := "[" + strings.Join(keywords, ", ") + "]"
 	contentsStr := strings.Replace(utils.StringSplit(item.Contents, 300), "<", "", -1)
 	contentsStr = strings.Replace(contentsStr, ">", "", -1)
@@ -78,4 +87,24 @@ func (tg TGEngine) TestMessage() error {
 	}
 
 	return nil
+}
+
+func (tg TGEngine) IsDuplicated(item models.NewsItem) bool {
+	for _, prevMsg := range tg.PrevMessages {
+		if item.Title == prevMsg {
+			return true
+		}
+	}
+	return false
+}
+
+func (tg *TGEngine) AddMessage(item models.NewsItem) {
+	temp := make([]string, MaxPrevMessageQueueSize)
+
+	for i := 0; i < MaxPrevMessageQueueSize; i++ {
+		temp[i+1] = tg.PrevMessages[i]
+	}
+	temp[0] = item.Title
+
+	tg.PrevMessages = temp
 }
