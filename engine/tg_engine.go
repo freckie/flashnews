@@ -99,12 +99,28 @@ func (tg TGEngine) IsDuplicated(item models.NewsItem) bool {
 }
 
 func (tg *TGEngine) AddMessage(item models.NewsItem) {
-	temp := make([]string, MaxPrevMessageQueueSize)
+	var temp []string
+	var length int
 
-	for i := 0; i < MaxPrevMessageQueueSize; i++ {
-		temp[i+1] = tg.PrevMessages[i]
+	if count := len(tg.PrevMessages); count == 0 {
+
+		temp = make([]string, 1)
+		temp[0] = item.Title
+
+	} else {
+
+		if count >= MaxPrevMessageQueueSize {
+			length = MaxPrevMessageQueueSize
+		} else {
+			length = count + 1
+		}
+
+		temp = make([]string, length)
+		for i := 0; i < length-1; i++ {
+			temp[i+1] = tg.PrevMessages[i]
+		}
+		temp[0] = item.Title
 	}
-	temp[0] = item.Title
 
 	tg.PrevMessages = temp
 }
