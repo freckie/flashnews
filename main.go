@@ -1,4 +1,4 @@
-//go:generate goversioninfo -file-version="v1.9.2"
+//go:generate goversioninfo
 
 package main
 
