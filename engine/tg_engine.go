@@ -1,6 +1,8 @@
 package engine
 
 import (
+	"errors"
+	"fmt"
 	"log"
 	"strings"
 
@@ -11,9 +13,12 @@ import (
 	telegram "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
+const MaxPrevMessageQueueSize = 5
+
 type TGEngine struct {
-	Bot *telegram.BotAPI
-	Cfg *config.Config
+	Bot          *telegram.BotAPI
+	Cfg          *config.Config
+	PrevMessages []string
 }
 
 func (tg *TGEngine) GenerateBot() error {
@@ -26,7 +31,12 @@ func (tg *TGEngine) GenerateBot() error {
 	return nil
 }
 
-func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
+func (tg *TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
+	if tg.IsDuplicated(item) {
+		log.Println("[INFO] message duplicated.")
+		return errors.New("Message Duplicated.")
+	}
+
 	keywordStr := "[" + strings.Join(keywords, ", ") + "]"
 	contentsStr := strings.Replace(utils.StringSplit(item.Contents, 300), "<", "", -1)
 	contentsStr = strings.Replace(contentsStr, ">", "", -1)
@@ -54,6 +64,8 @@ func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 		log.Printf("채널(%d)에 메세지 전송 : %v", channel, sentMsg.Text)
 	}
 
+	tg.AddMessage(item)
+
 	return nil
 }
 
@@ -78,4 +90,25 @@ func (tg TGEngine) TestMessage() error {
 	}
 
 	return nil
+}
+
+func (tg TGEngine) IsDuplicated(item models.NewsItem) bool {
+	fmt.Println("IsDuplicated() tg.PrevMessages:", len(tg.PrevMessages), tg.PrevMessages)
+	for _, prevMsg := range tg.PrevMessages {
+		if item.Title == prevMsg {
+			return true
+		}
+	}
+	return false
+}
+
+func (tg *TGEngine) AddMessage(item models.NewsItem) {
+	if len(tg.PrevMessages) < 1 {
+		tg.PrevMessages = append(tg.PrevMessages, item.Title)
+	} else {
+		tg.PrevMessages = append(tg.PrevMessages, item.Title)
+		if len(tg.PrevMessages) > MaxPrevMessageQueueSize {
+			tg.PrevMessages = tg.PrevMessages[1:]
+		}
+	}
 }
