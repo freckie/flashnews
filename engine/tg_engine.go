@@ -2,6 +2,7 @@ package engine
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"strings"
 
@@ -30,11 +31,11 @@ func (tg *TGEngine) GenerateBot() error {
 	return nil
 }
 
-func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
+func (tg *TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 	if tg.IsDuplicated(item) {
+		log.Println("[INFO] message duplicated.")
 		return errors.New("Message Duplicated.")
 	}
-	tg.AddMessage(item)
 
 	keywordStr := "[" + strings.Join(keywords, ", ") + "]"
 	contentsStr := strings.Replace(utils.StringSplit(item.Contents, 300), "<", "", -1)
@@ -63,6 +64,8 @@ func (tg TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 		log.Printf("채널(%d)에 메세지 전송 : %v", channel, sentMsg.Text)
 	}
 
+	tg.AddMessage(item)
+
 	return nil
 }
 
@@ -90,6 +93,7 @@ func (tg TGEngine) TestMessage() error {
 }
 
 func (tg TGEngine) IsDuplicated(item models.NewsItem) bool {
+	fmt.Println("IsDuplicated() tg.PrevMessages:", len(tg.PrevMessages), tg.PrevMessages)
 	for _, prevMsg := range tg.PrevMessages {
 		if item.Title == prevMsg {
 			return true
@@ -99,28 +103,12 @@ func (tg TGEngine) IsDuplicated(item models.NewsItem) bool {
 }
 
 func (tg *TGEngine) AddMessage(item models.NewsItem) {
-	var temp []string
-	var length int
-
-	if count := len(tg.PrevMessages); count == 0 {
-
-		temp = make([]string, 1)
-		temp[0] = item.Title
-
+	if len(tg.PrevMessages) < 1 {
+		tg.PrevMessages = append(tg.PrevMessages, item.Title)
 	} else {
-
-		if count >= MaxPrevMessageQueueSize {
-			length = MaxPrevMessageQueueSize
-		} else {
-			length = count + 1
+		tg.PrevMessages = append(tg.PrevMessages, item.Title)
+		if len(tg.PrevMessages) > MaxPrevMessageQueueSize {
+			tg.PrevMessages = tg.PrevMessages[1:]
 		}
-
-		temp = make([]string, length)
-		for i := 0; i < length-1; i++ {
-			temp[i+1] = tg.PrevMessages[i]
-		}
-		temp[0] = item.Title
 	}
-
-	tg.PrevMessages = temp
 }
