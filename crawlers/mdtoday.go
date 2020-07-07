@@ -69,7 +69,6 @@ func (c MDToday) GetList(number int) ([]models.NewsItem, error) {
 		date := sel.Find("font").Text()
 		title, err := utils.ReadISO88591(aTag.Find("b").Text())
 		if err != nil {
-			fmt.Println("ISO 8895-1 ERROR :", err)
 			result[i] = models.NewsItem{}
 			return
 		}

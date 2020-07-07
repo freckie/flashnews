@@ -2,7 +2,6 @@ package engine
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"strings"
 
@@ -33,7 +32,6 @@ func (tg *TGEngine) GenerateBot() error {
 
 func (tg *TGEngine) SendMessage(item models.NewsItem, keywords []string) error {
 	if tg.IsDuplicated(item) {
-		log.Println("[INFO] message duplicated.")
 		return errors.New("Message Duplicated.")
 	}
 
@@ -93,7 +91,6 @@ func (tg TGEngine) TestMessage() error {
 }
 
 func (tg TGEngine) IsDuplicated(item models.NewsItem) bool {
-	fmt.Println("IsDuplicated() tg.PrevMessages:", len(tg.PrevMessages), tg.PrevMessages)
 	for _, prevMsg := range tg.PrevMessages {
 		if item.Title == prevMsg {
 			return true

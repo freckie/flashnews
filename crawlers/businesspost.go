@@ -103,8 +103,6 @@ func (c BusinessPost) GetContents(item *models.NewsItem) error {
 	date, ok := utils.GetDateString(strings.Replace(date, "\u00a0", " ", -1)) // \u00a0 == &nbsp;
 	if ok {
 		item.Datetime = date
-	} else {
-		fmt.Println(date)
 	}
 
 	wrapper := html.Find("div.post-contents")
