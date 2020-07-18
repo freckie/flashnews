@@ -57,9 +57,14 @@
     "medicaltimes.com": false,
     "news.tf.co.kr": false,
     "gamefocus.co.kr/section.php?thread=22r09": false,
-    "lawissue.co.kr": true,
-    "youthdaily.co.kr": true,
-    "kukinews.com": true,
-    "wowtv.co.kr": true,
-    "newsprime.co.kr/article_list_writer/?name=양민호+기자": true
+    "lawissue.co.kr": false,
+    "youthdaily.co.kr": false,
+    "kukinews.com": false,
+    "wowtv.co.kr": false,
+    "newsprime.co.kr/article_list_writer/?name=양민호+기자": false,
+    "getnews.co.kr": true,
+    "newstown.co.kr": true,
+    "dealsite.co.kr": true,
+    "pharmstock.co.kr": true,
+    "press9.kr": true
 }
