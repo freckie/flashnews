@@ -1,5 +1,3 @@
-// 20200718 :: Updated to new URL
-
 package crawlers
 
 import (
@@ -12,31 +10,31 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const fnnewsCommonURL = "https://www.fnnews.com/load/category/002001000?page=0"
-const fnnewsItemURL = ""
+const getNewsCommonURL = "http://www.getnews.co.kr/list.php?ct=g0000"
+const getNewsItemURL = ""
 
-type FnNews struct{}
+type GetNews struct{}
 
-func (c FnNews) GetName() string {
-	return "fnnews"
+func (c GetNews) GetName() string {
+	return "GetNews"
 }
 
-func (c FnNews) GetGroup() string {
-	return "2"
+func (c GetNews) GetGroup() string {
+	return "10"
 }
 
-func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
+func (c GetNews) GetList(number int) ([]models.NewsItem, error) {
 	// Number
 	var _number int
-	if number > 15 || number < 1 {
-		_number = 15
+	if number > 10 || number < 1 {
+		_number = 10
 	} else {
 		_number = number
 	}
 	result := make([]models.NewsItem, _number)
 
 	// Request
-	req, err := http.Get(fnnewsCommonURL)
+	req, err := http.Get(getNewsCommonURL)
 	if err != nil {
 		return result, err
 	}
@@ -53,7 +51,8 @@ func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	items := html.Find("li")
+	wrapper := html.Find("div.l2d > ul")
+	items := wrapper.Find("li")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
@@ -65,10 +64,10 @@ func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
 			result[i] = models.NewsItem{}
 			return
 		}
-		url := fnnewsItemURL + href
+		url := getNewsItemURL + href
 
-		date := sel.Find("em.date").Text()
-		title := sel.Find("strong.tit_thumb").Text()
+		date := sel.Find("span.e2").Text()
+		title := sel.Find("span.w1.elip1").Text()
 
 		result[i] = models.NewsItem{
 			Title:    title,
@@ -81,7 +80,7 @@ func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
 	return result, nil
 }
 
-func (c FnNews) GetContents(item *models.NewsItem) error {
+func (c GetNews) GetContents(item *models.NewsItem) error {
 	// Request
 	req, err := http.Get(item.URL)
 	if err != nil {
@@ -100,11 +99,11 @@ func (c FnNews) GetContents(item *models.NewsItem) error {
 	}
 
 	// Parsing
-	wrapper := html.Find("div#article_content")
+	wrapper := html.Find("div.vcon_in.articleContent")
 	contents := ""
-	wrapper.Contents().Each(func(i int, sel *goquery.Selection) {
+	wrapper.Contents().Each(func(idx int, sel *goquery.Selection) {
 		if goquery.NodeName(sel) == "#text" {
-			contents += (utils.TrimAll(sel.Text()) + " ")
+			contents += (utils.TrimAll(sel.Text()) + "")
 		}
 	})
 

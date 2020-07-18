@@ -107,6 +107,12 @@ type NewsConfig struct {
 	KukiNews     bool `json:"kukinews.com"`
 	WowTV        bool `json:"wowtv.co.kr"`
 	NewsPrimeYMH bool `json:"newsprime.co.kr/article_list_writer/?name=양민호+기자"`
+	/* Group 10 */
+	GetNews    bool `json:"getnews.co.kr"`
+	NewsTown   bool `json:"newstown.co.kr"`
+	DealSite   bool `json:"dealsite.co.kr"`
+	PharmStock bool `json:"pharmstock.co.kr"`
+	Press9     bool `json:"press9.kr"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
