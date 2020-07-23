@@ -1,9 +1,10 @@
+// 20200718 :: Updated to new URL
+
 package crawlers
 
 import (
 	"fmt"
 	"net/http"
-	"strings"
 
 	"flashnews/models"
 	"flashnews/utils"
@@ -11,8 +12,8 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const fnnewsCommonURL = "http://www.fnnews.com/newsflash/"
-const fnnewsItemURL = "http://www.fnnews.com"
+const fnnewsCommonURL = "https://www.fnnews.com/load/category/002001000?page=0"
+const fnnewsItemURL = ""
 
 type FnNews struct{}
 
@@ -52,8 +53,7 @@ func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("div.art_flash_wrap")
-	items := wrapper.Find("li")
+	items := html.Find("li")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
@@ -67,8 +67,8 @@ func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
 		}
 		url := fnnewsItemURL + href
 
-		date := sel.Find("span.category_date").Text()
-		title := aTag.Text()
+		date := sel.Find("em.date").Text()
+		title := sel.Find("strong.tit_thumb").Text()
 
 		result[i] = models.NewsItem{
 			Title:    title,
@@ -101,13 +101,12 @@ func (c FnNews) GetContents(item *models.NewsItem) error {
 
 	// Parsing
 	wrapper := html.Find("div#article_content")
-	contents := wrapper.Text()
-
-	removes := wrapper.Find("table")
-	removes.Each(func(idx int, sel *goquery.Selection) {
-		contents = strings.Replace(contents, sel.Text(), "", -1)
+	contents := ""
+	wrapper.Contents().Each(func(i int, sel *goquery.Selection) {
+		if goquery.NodeName(sel) == "#text" {
+			contents += (utils.TrimAll(sel.Text()) + " ")
+		}
 	})
-	contents = utils.TrimAll(contents)
 
 	item.Contents = contents
 	return nil
