@@ -328,7 +328,7 @@ func (c *Engine) Run() {
 				}
 
 				// Detect New Item
-				for idx, _ := range data {
+				for idx := range data {
 					if !utils.IsContain(data[idx].URL, prevData[name]) { // New Item
 						// Exceptions (do not check title/keyword condition)
 						if utils.IsContain(crawler.GetName(), CondExceptionCrawlers) {
