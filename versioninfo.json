@@ -2,13 +2,13 @@
     "FixedFileInfo": {
         "FileVersion": {
             "Major": 1,
-            "Minor": 9,
+            "Minor": 10,
             "Patch": 3,
             "Build": 0
         },
         "ProductVersion": {
             "Major": 1,
-            "Minor": 9,
+            "Minor": 10,
             "Patch": 3,
             "Build": 0
         },
@@ -22,14 +22,14 @@
         "Comments": "",
         "CompanyName": "",
         "FileDescription": "flashnews crawler",
-        "FileVersion": "v1.9.3",
+        "FileVersion": "v1.10.3",
         "InternalName": "",
         "LegalCopyright": "",
         "LegalTrademarks": "",
         "OriginalFilename": "",
-        "PrivateBuild": "200704",
+        "PrivateBuild": "200723",
         "ProductName": "",
-        "ProductVersion": "v1.9.3",
+        "ProductVersion": "v1.10.3",
         "SpecialBuild": ""
     },
     "VarFileInfo": {
