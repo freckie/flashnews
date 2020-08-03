@@ -5,6 +5,8 @@ package crawlers
 import (
 	"fmt"
 	"net/http"
+	"strconv"
+	"time"
 
 	"flashnews/models"
 	"flashnews/utils"
@@ -12,7 +14,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const fnnewsCommonURL = "https://www.fnnews.com/load/category/002001000?page=0"
+const fnnewsCommonURL = "https://www.fnnews.com/load/category/002001000?page=0&_="
 const fnnewsItemURL = ""
 
 type FnNews struct{}
@@ -35,8 +37,12 @@ func (c FnNews) GetList(number int) ([]models.NewsItem, error) {
 	}
 	result := make([]models.NewsItem, _number)
 
+	// Get timestamp
+	unixTimestamp := time.Now().Unix() + 1000
+	timestamp := strconv.FormatInt(unixTimestamp, 10)
+
 	// Request
-	req, err := http.Get(fnnewsCommonURL)
+	req, err := http.Get(fnnewsCommonURL + timestamp)
 	if err != nil {
 		return result, err
 	}
