@@ -284,6 +284,10 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.Press9 {
 		c.Crawlers = append(c.Crawlers, crawlers.Press9{})
 	}
+	/* Group 11 */
+	if c.NewsCfg.Kiwoom {
+		c.Crawlers = append(c.Crawlers, crawlers.Kiwoom{})
+	}
 
 	c.Logger.Println("Crawler 세팅 완료!")
 
