@@ -1,24 +1,40 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://www2.kiwoom.com/nkw.templateFrameSet.do?m=m0106010000'
+url = 'https://www2.kiwoom.com/nkw.TD6000News.do'
+contentURL = 'https://www2.kiwoom.com/nkw.TD6000NewsCont.do'
 
 req = requests.get(url)
 bs = BeautifulSoup(req.text, 'lxml')
 
 wrapper = bs.find('table', id='oTable')
-items = wrapper.find_all('tr')
-print(items)
+items = wrapper.find_all('tr')[1:]
 
-# for item in items[0:3]:
-#     a_tag = item.find('a', class_='dyn std')
-#     href = 'https://dealsite.co.kr' + a_tag['href'].strip()
-#     title = a_tag.get_text().strip()
-#     date = item.find("div", class_='pubdate').get_text().strip()
-#     contents = item.find('span', class_='sneakpeek').get_text().strip()
+for idx, item in enumerate(items[0:5]):
+    a_tag = item.find('td', class_='ldata').find('a')
+    title = a_tag.get_text().strip()
+    supplier = item.find('div', id='gubn_'+str(idx)).get_text().strip() + \
+        item.find('div', id='subg_'+str(idx)).get_text().strip()
+    date = item.find('div', id='date_'+str(idx)).get_text().strip() + ' ' + \
+        item.find('div', id='time_'+str(idx)).get_text().strip()
+    hcode = date.replace('/', '').replace(':', '').replace(' ', '') + item.find('div', id='seqn_'+str(idx)).get_text().strip()
+    
+    req2 = requests.post(contentURL, data={
+        'supplier': supplier,
+        'hcode': hcode
+    })
+    bs2 = BeautifulSoup(req2.text, 'lxml')
+    contents = bs2.get_text().strip()
 
-#     print('=================')
-#     print(title)
-#     print(date)
-#     print(href)
-#     print(contents)
+    print('=================')
+    print(title)
+    print(date)
+    print(hcode)
+    print(supplier)
+    # print(href)
+    print(contents)
+
+    # supplier : 2103
+    # hcode : 2020 12 09 13 53 27 13532745
+    # title 안 보내도 됨
+    # form data로 https://www2.kiwoom.com/nkw.TD6000NewsCont.do POST
