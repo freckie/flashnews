@@ -113,6 +113,8 @@ type NewsConfig struct {
 	DealSite   bool `json:"dealsite.co.kr"`
 	PharmStock bool `json:"pharmstock.co.kr"`
 	Press9     bool `json:"press9.kr"`
+	/* Group 11 */
+	Kiwoom bool `json:"kiwoom.com"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
