@@ -24,15 +24,17 @@ for idx, item in enumerate(items[0:5]):
         'hcode': hcode
     })
     bs2 = BeautifulSoup(req2.text, 'lxml')
+    print(bs2)
     contents = bs2.get_text().strip()
 
-    print('=================')
-    print(title)
-    print(date)
-    print(hcode)
-    print(supplier)
-    # print(href)
-    print(contents)
+    # print('=================')
+    # print(item)
+    # print(title)
+    # print(date)
+    # print(hcode)
+    # print(supplier)
+    # # print(href)
+    # print(contents)
 
     # supplier : 2103
     # hcode : 2020 12 09 13 53 27 13532745

@@ -62,9 +62,10 @@
     "kukinews.com": false,
     "wowtv.co.kr": false,
     "newsprime.co.kr/article_list_writer/?name=양민호+기자": false,
-    "getnews.co.kr": true,
-    "newstown.co.kr": true,
-    "dealsite.co.kr": true,
-    "pharmstock.co.kr": true,
-    "press9.kr": true
+    "getnews.co.kr": false,
+    "newstown.co.kr": false,
+    "dealsite.co.kr": false,
+    "pharmstock.co.kr": false,
+    "press9.kr": false,
+    "kiwoom.com": true
 }
