@@ -133,6 +133,5 @@ func (c Kiwoom) GetContents(item *models.NewsItem) error {
 	// contents := utils.TrimAll(html.Text())
 
 	item.Contents = contents
-	item.URL = ""
 	return nil
 }
