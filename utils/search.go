@@ -15,10 +15,10 @@ func TitleCond(item models.NewsItem) bool {
 	// Cond1 : 첫 단어 이후 쉼표나 따옴표로 시작하는지.
 	cond1, _ = regexp.MatchString("^([0-9a-zA-Z가-힣]+ ?[,\"“])", title)
 
-	// Cond2 : 처음이 '[B [S [단 [특' 와 같은지
+	// Cond2 : 처음이 '[B [S [단 [특 [?' 와 같은지
 	if temp := strings.TrimSpace(title); len(temp) > 0 {
 		substr := StringSplit(title, 2)
-		cond2 = ((substr == "[B") || (substr == "[S") || (substr == "[단") || (substr == "[특"))
+		cond2 = ((substr == "[B") || (substr == "[S") || (substr == "[단") || (substr == "[특") || (substr == "[?"))
 	} else {
 		return false
 	}
