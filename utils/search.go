@@ -9,21 +9,24 @@ import (
 
 // TitleCond : 제목 조건에 부합하는지.
 func TitleCond(item models.NewsItem) bool {
-	var cond1, cond2 bool
+	var cond1, cond2, cond3 bool
 	title := item.Title
 
 	// Cond1 : 첫 단어 이후 쉼표나 따옴표로 시작하는지.
 	cond1, _ = regexp.MatchString("^([0-9a-zA-Z가-힣]+ ?[,\"“])", title)
 
-	// Cond2 : 처음이 '[B [S [단 [특 [?' 와 같은지
+	// Cond2 : 처음이 '[B [S [단 [특' 와 같은지
+	// Cond3 : 처음이 '?'와 같은지
 	if temp := strings.TrimSpace(title); len(temp) > 0 {
 		substr := StringSplit(title, 2)
-		cond2 = ((substr == "[B") || (substr == "[S") || (substr == "[단") || (substr == "[특") || (substr == "[?"))
+		cond2 = ((substr == "[B") || (substr == "[S") || (substr == "[단") || (substr == "[특"))
+		substr2 := StringSplit(title, 1)
+		cond3 = (substr2 == "?")
 	} else {
 		return false
 	}
 
-	return cond1 || cond2
+	return cond1 || cond2 || cond3
 }
 
 // KeywordCond : 제목과 본문에 키워드가 있는지
