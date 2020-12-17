@@ -288,6 +288,57 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 	if c.NewsCfg.Kiwoom {
 		c.Crawlers = append(c.Crawlers, crawlers.Kiwoom{})
 	}
+	if c.NewsCfg.HankyungBio {
+		c.Crawlers = append(c.Crawlers, crawlers.HankyungBio{})
+	}
+
+	if c.NewsCfg.HankyungMarketInsight {
+		c.Crawlers = append(c.Crawlers, crawlers.HankyungMarketInsight{})
+	}
+
+	if c.NewsCfg.BeyondPost {
+		c.Crawlers = append(c.Crawlers, crawlers.BeyondPost{})
+	}
+
+	if c.NewsCfg.TheGuru {
+		c.Crawlers = append(c.Crawlers, crawlers.TheGuru{})
+	}
+
+	if c.NewsCfg.NewsWorks {
+		c.Crawlers = append(c.Crawlers, crawlers.NewsWorks{})
+	}
+
+	if c.NewsCfg.Econovill {
+		c.Crawlers = append(c.Crawlers, crawlers.Econovill{})
+	}
+
+	if c.NewsCfg.DNews {
+		c.Crawlers = append(c.Crawlers, crawlers.DNews{})
+	}
+
+	if c.NewsCfg.CCReview {
+		c.Crawlers = append(c.Crawlers, crawlers.CCReview{})
+	}
+
+	if c.NewsCfg.TheElec {
+		c.Crawlers = append(c.Crawlers, crawlers.TheElec{})
+	}
+
+	if c.NewsCfg.News1Latest {
+		c.Crawlers = append(c.Crawlers, crawlers.News1Latest{})
+	}
+
+	if c.NewsCfg.MKVIP26 {
+		c.Crawlers = append(c.Crawlers, crawlers.MKVIP26{})
+	}
+
+	if c.NewsCfg.MKVIP10001 {
+		c.Crawlers = append(c.Crawlers, crawlers.MKVIP10001{})
+	}
+
+	if c.NewsCfg.Etoday1202 {
+		c.Crawlers = append(c.Crawlers, crawlers.Etoday1202{})
+	}
 
 	c.Logger.Println("Crawler 세팅 완료!")
 

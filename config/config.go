@@ -114,7 +114,20 @@ type NewsConfig struct {
 	PharmStock bool `json:"pharmstock.co.kr"`
 	Press9     bool `json:"press9.kr"`
 	/* Group 11 */
-	Kiwoom bool `json:"kiwoom.com"`
+	Kiwoom                bool `json:"kiwoom.com"`
+	HankyungBio           bool `json:"hankyung.com/bioinsight"`
+	HankyungMarketInsight bool `json:"marketinsight.hankyung.com"`
+	BeyondPost            bool `json:"beyondpost.co.kr"`
+	TheGuru               bool `json:"theguru.co.kr"`
+	NewsWorks             bool `json:"newsworks.co.kr"`
+	Econovill             bool `json:"econovill.com"`
+	DNews                 bool `json:"dnews.co.kr"`
+	CCReview              bool `json:"ccreview.co.kr"`
+	TheElec               bool `json:"thelec.kr"`
+	News1Latest           bool `json:"news1.kr/latest"`
+	MKVIP26               bool `json:"vip.mk.co.kr/newSt/news/news_list.php?sCode=26"`
+	MKVIP10001            bool `json:"vip.mk.co.kr/newSt/news/news_list.php?sCode=10001"`
+	Etoday1202            bool `json:"etoday.co.kr/news/section/subsection?MID=1202"`
 }
 
 func LoadConfig(filePath string) (*Config, error) {
