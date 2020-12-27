@@ -112,6 +112,13 @@ func (c Edaily) GetContents(item *models.NewsItem) error {
 		return err
 	}
 
+	// Parse Title
+	title, err := utils.ReadCP949(html.Find("h4.newstitle").Text())
+	if err != nil {
+		title = ""
+	}
+	title = utils.TrimAll(title)
+
 	// Parse Datetime
 	timeStr := html.Find("p.newsdate").Text()
 	datetime := strings.Split(timeStr, " | ")[1]
@@ -129,6 +136,7 @@ func (c Edaily) GetContents(item *models.NewsItem) error {
 		}
 	})
 
+	item.Title = title
 	item.Contents = contents
 	item.Datetime = datetime
 
