@@ -10,8 +10,8 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const theElecCommonURL = "https://www.ccreview.co.kr/news/articleList.html?sc_section_code=S1N27&view_type=sm"
-const theElecItemURL = "https://www.ccreview.co.kr"
+const theElecCommonURL = "http://www.thelec.kr/news/articleList.html?view_type=sm"
+const theElecItemURL = "http://www.thelec.kr"
 
 type TheElec struct{}
 
