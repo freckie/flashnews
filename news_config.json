@@ -1,84 +1,330 @@
 {
-    "asiae.co.kr": false,
-    "edaily.co.kr": false,
-    "etoday.co.kr": false,
-    "mt.co.kr": false,
-    "sedaily.com": false,
-    "biz.chosun.com": false,
-    "fnnews.com": false,
-    "hankyung.com": false,
-    "infostockdaily.co.kr": false,
-    "mk.co.kr": false,
-    "mtn.co.kr": false,
-    "newspim.com": false,
-    "yna.co.kr": false,
-    "biospectator.com": false,
-    "dailymedi.com": false,
-    "docdocdoc.co.kr": false,
-    "doctorsnews.co.kr": false,
-    "mdtoday.co.kr": false,
-    "news1.kr": false,
-    "newsis.com": false,
-    "newsrun.co.kr": false,
-    "paxnetnews.com": false,
-    "yakup.com": false,
-    "businesspost.co.kr": false,
-    "ddaily.co.kr": false,
-    "dt.co.kr": false,
-    "g-enews.com": false,
-    "inews24.com": false,
-    "inthenews.co.kr": false,
-    "medipana.com": false,
-    "newsway.co.kr": false,
-    "nspna.com": false,
-    "seoulwire.com": false,
-    "thebell.co.kr": false,
-    "newsprime.co.kr": false,
-    "paxetv.com": false,
-    "dailypharm.com": false,
-    "sedaily.com/NewsList/GA05": false,
-    "sedaily.com/NewsList/GA07": false,
-    "rpm9.com": false,
-    "mediapen.com": false,
-    "gamefocus.co.kr": false,
-    "moneys.mt.co.kr": false,
-    "nspna.com/news/?cid=11": false,
-    "nspna.com/news/?cid=21": false,
-    "newsprime.co.kr/section_list_all/?sec_no=57": false,
-    "newsprime.co.kr/section_list_all/?sec_no=67": false,
-    "ceoscoredaily.com": false,
-    "etnews.com": false,
-    "kmedinfo.co.kr": false,
-    "viva100.com": false,
-    "zdnet.co.kr": false,
-    "ajunews.com": false,
-    "ebn.co.kr": false,
-    "news.kmib.co.kr": false,
-    "medicaltimes.com": false,
-    "news.tf.co.kr": false,
-    "gamefocus.co.kr/section.php?thread=22r09": false,
-    "lawissue.co.kr": false,
-    "youthdaily.co.kr": false,
-    "kukinews.com": false,
-    "wowtv.co.kr": false,
-    "newsprime.co.kr/article_list_writer/?name=양민호+기자": false,
-    "getnews.co.kr": false,
-    "newstown.co.kr": false,
-    "dealsite.co.kr": false,
-    "pharmstock.co.kr": false,
-    "press9.kr": false,
-    "kiwoom.com": true,
-    "hankyung.com/bioinsight": true,
-    "marketinsight.hankyung.com": true,
-    "beyondpost.co.kr": true,
-    "theguru.co.kr": true,
-    "newsworks.co.kr": true,
-    "econovill.com": true,
-    "dnews.co.kr": true,
-    "ccreview.co.kr": true,
-    "thelec.kr": true,
-    "news1.kr/latest": true,
-    "vip.mk.co.kr/newSt/news/news_list.php?sCode=26": true,
-    "vip.mk.co.kr/newSt/news/news_list.php?sCode=10001": true,
-    "etoday.co.kr/news/section/subsection?MID=1202": true
+    "asiae.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "edaily.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "etoday.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "mt.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "sedaily.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "biz.chosun.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "fnnews.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "hankyung.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "infostockdaily.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "mk.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "mtn.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newspim.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "yna.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "biospectator.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "dailymedi.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "docdocdoc.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "doctorsnews.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "mdtoday.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "news1.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsis.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsrun.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "paxnetnews.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "yakup.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "businesspost.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "ddaily.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "dt.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "g-enews.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "inews24.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "inthenews.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "medipana.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsway.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "nspna.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "seoulwire.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "thebell.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsprime.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "paxetv.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "dailypharm.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "sedaily.com/NewsList/GA05": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "sedaily.com/NewsList/GA07": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "rpm9.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "mediapen.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "gamefocus.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "moneys.mt.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "nspna.com/news/?cid=11": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "nspna.com/news/?cid=21": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsprime.co.kr/section_list_all/?sec_no=57": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsprime.co.kr/section_list_all/?sec_no=67": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "ceoscoredaily.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "etnews.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "kmedinfo.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "viva100.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "zdnet.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "ajunews.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "ebn.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "news.kmib.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "medicaltimes.com": {
+        "crawl": false,
+        "title_filtering": false
+    },
+    "news.tf.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "gamefocus.co.kr/section.php?thread=22r09": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "lawissue.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "youthdaily.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "kukinews.com": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "wowtv.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newsprime.co.kr/article_list_writer/?name=양민호+기자": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "getnews.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "newstown.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "dealsite.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "pharmstock.co.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "press9.kr": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "kiwoom.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "hankyung.com/bioinsight": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "marketinsight.hankyung.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "beyondpost.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "theguru.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "newsworks.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "econovill.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "dnews.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "ccreview.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "thelec.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "news1.kr/latest": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "vip.mk.co.kr/newSt/news/news_list.php?sCode=26": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "vip.mk.co.kr/newSt/news/news_list.php?sCode=10001": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "etoday.co.kr/news/section/subsection?MID=1202": {
+        "crawl": true,
+        "title_filtering": true
+    }
 }
