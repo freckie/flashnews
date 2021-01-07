@@ -574,6 +574,19 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.Etoday1202{}.GetName())
 		}
 	}
+	/* Group 12 */
+	if c.NewsCfg.MyAsset.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.MyAsset{})
+		if !c.NewsCfg.MyAsset.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.MyAsset{}.GetName())
+		}
+	}
+	if c.NewsCfg.HeraldCorp.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.HeraldCorp{})
+		if !c.NewsCfg.HeraldCorp.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.HeraldCorp{}.GetName())
+		}
+	}
 
 	c.Logger.Println("Crawler 세팅 완료!")
 	c.Logger.Printf("제목 필터링 기능이 꺼진 크롤러들 : [%s]\n", strings.Join(CondOnlyContentsCrawlers, ","))

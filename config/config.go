@@ -128,6 +128,9 @@ type NewsConfig struct {
 	MKVIP26               NewsConfigItem `json:"vip.mk.co.kr/newSt/news/news_list.php?sCode=26"`
 	MKVIP10001            NewsConfigItem `json:"vip.mk.co.kr/newSt/news/news_list.php?sCode=10001"`
 	Etoday1202            NewsConfigItem `json:"etoday.co.kr/news/section/subsection?MID=1202"`
+	/* Group 12 */
+	MyAsset    NewsConfigItem `json:"myasset.com"`
+	HeraldCorp NewsConfigItem `json:"biz.heraldcorp.com"`
 }
 
 type NewsConfigItem struct {

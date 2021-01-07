@@ -272,58 +272,66 @@
         "title_filtering": true
     },
     "kiwoom.com": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "hankyung.com/bioinsight": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "marketinsight.hankyung.com": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "beyondpost.co.kr": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "theguru.co.kr": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "newsworks.co.kr": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "econovill.com": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "dnews.co.kr": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "ccreview.co.kr": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "thelec.kr": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "news1.kr/latest": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "vip.mk.co.kr/newSt/news/news_list.php?sCode=26": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "vip.mk.co.kr/newSt/news/news_list.php?sCode=10001": {
-        "crawl": true,
+        "crawl": false,
         "title_filtering": true
     },
     "etoday.co.kr/news/section/subsection?MID=1202": {
+        "crawl": false,
+        "title_filtering": true
+    },
+    "myasset.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "biz.heraldcorp.com": {
         "crawl": true,
         "title_filtering": true
     }
