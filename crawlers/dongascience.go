@@ -60,9 +60,6 @@ func (c DongaScience) GetList(number int) ([]models.NewsItem, error) {
 	}
 	defer resp.Body.Close()
 
-	fmt.Println(resp.Request.URL.String())
-	panic("hihi")
-
 	if resp.StatusCode != 200 {
 		return result, fmt.Errorf("[ERROR] Request Status Code : %d, %s", resp.StatusCode, resp.Status)
 	}
