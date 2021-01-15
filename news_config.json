@@ -334,5 +334,41 @@
     "biz.heraldcorp.com": {
         "crawl": true,
         "title_filtering": true
+    },
+    "bosa.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "hitnews.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "datanews.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "doctorstimes.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "bokuennews.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "whosaeng.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "pharmnews.com": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "healthinnews.co.kr": {
+        "crawl": true,
+        "title_filtering": true
+    },
+    "medipharmhealth.co.kr": {
+        "crawl": true,
+        "title_filtering": true
     }
 }

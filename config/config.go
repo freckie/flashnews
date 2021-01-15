@@ -129,8 +129,17 @@ type NewsConfig struct {
 	MKVIP10001            NewsConfigItem `json:"vip.mk.co.kr/newSt/news/news_list.php?sCode=10001"`
 	Etoday1202            NewsConfigItem `json:"etoday.co.kr/news/section/subsection?MID=1202"`
 	/* Group 12 */
-	MyAsset    NewsConfigItem `json:"myasset.com"`
-	HeraldCorp NewsConfigItem `json:"biz.heraldcorp.com"`
+	MyAsset         NewsConfigItem `json:"myasset.com"`
+	HeraldCorp      NewsConfigItem `json:"biz.heraldcorp.com"`
+	Bosa            NewsConfigItem `json:"bosa.co.kr"`
+	HITNews         NewsConfigItem `json:"hitnews.co.kr"`
+	DataNews        NewsConfigItem `json:"datanews.co.kr"`
+	DoctorsTimes    NewsConfigItem `json:"doctorstimes.com"`
+	BokuenNews      NewsConfigItem `json:"bokuennews.com"`
+	Whosaeng        NewsConfigItem `json:"whosaeng.com"`
+	PharmNews       NewsConfigItem `json:"pharmnews.com"`
+	HealthInNews    NewsConfigItem `json:"healthinnews.co.kr"`
+	MedipharmHealth NewsConfigItem `json:"medipharmhealth.co.kr"`
 }
 
 type NewsConfigItem struct {

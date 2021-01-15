@@ -587,6 +587,60 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.HeraldCorp{}.GetName())
 		}
 	}
+	if c.NewsCfg.Bosa.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.Bosa{})
+		if !c.NewsCfg.Bosa.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.Bosa{}.GetName())
+		}
+	}
+	if c.NewsCfg.HITNews.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.HITNews{})
+		if !c.NewsCfg.HITNews.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.HITNews{}.GetName())
+		}
+	}
+	if c.NewsCfg.DataNews.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.DataNews{})
+		if !c.NewsCfg.DataNews.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.DataNews{}.GetName())
+		}
+	}
+	if c.NewsCfg.DoctorsTimes.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.DoctorsTimes{})
+		if !c.NewsCfg.DoctorsTimes.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.DoctorsTimes{}.GetName())
+		}
+	}
+	if c.NewsCfg.BokuenNews.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.BokuenNews{})
+		if !c.NewsCfg.BokuenNews.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.BokuenNews{}.GetName())
+		}
+	}
+	if c.NewsCfg.Whosaeng.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.Whosaeng{})
+		if !c.NewsCfg.Whosaeng.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.Whosaeng{}.GetName())
+		}
+	}
+	/*if c.NewsCfg.PharmNews.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.PharmNews{})
+		if !c.NewsCfg.PharmNews.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.PharmNews{}.GetName())
+		}
+	}*/
+	if c.NewsCfg.HealthInNews.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.HealthInNews{})
+		if !c.NewsCfg.HealthInNews.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.HealthInNews{}.GetName())
+		}
+	}
+	if c.NewsCfg.MedipharmHealth.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.MedipharmHealth{})
+		if !c.NewsCfg.MedipharmHealth.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.MedipharmHealth{}.GetName())
+		}
+	}
 
 	c.Logger.Println("Crawler 세팅 완료!")
 	c.Logger.Printf("제목 필터링 기능이 꺼진 크롤러들 : [%s]\n", strings.Join(CondOnlyContentsCrawlers, ","))
