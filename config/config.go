@@ -138,6 +138,7 @@ type NewsConfig struct {
 	Whosaeng        NewsConfigItem `json:"whosaeng.com"`
 	HealthInNews    NewsConfigItem `json:"healthinnews.co.kr"`
 	MedipharmHealth NewsConfigItem `json:"medipharmhealth.co.kr"`
+	AsiaeFeature    NewsConfigItem `json:"asiae.co.kr/list/feature"`
 }
 
 type NewsConfigItem struct {

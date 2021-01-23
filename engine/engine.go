@@ -629,6 +629,12 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.MedipharmHealth{}.GetName())
 		}
 	}
+	if c.NewsCfg.AsiaeFeature.Crawl {
+		c.Crawlers = append(c.Crawlers, crawlers.AsiaeFeature{})
+		if !c.NewsCfg.AsiaeFeature.TitleFiltering {
+			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.AsiaeFeature{}.GetName())
+		}
+	}
 
 	c.Logger.Println("Crawler 세팅 완료!")
 	c.Logger.Printf("제목 필터링 기능이 꺼진 크롤러들 : [%s]\n", strings.Join(CondOnlyContentsCrawlers, ","))

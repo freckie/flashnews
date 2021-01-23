@@ -362,5 +362,9 @@
     "medipharmhealth.co.kr": {
         "crawl": true,
         "title_filtering": true
+    },
+    "asiae.co.kr/list/feature": {
+        "crawl": true,
+        "title_filtering": true
     }
 }
