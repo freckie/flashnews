@@ -611,24 +611,12 @@ func (c *Engine) Init(logger *log.Logger, filePath string) error {
 			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.DoctorsTimes{}.GetName())
 		}
 	}
-	if c.NewsCfg.BokuenNews.Crawl {
-		c.Crawlers = append(c.Crawlers, crawlers.BokuenNews{})
-		if !c.NewsCfg.BokuenNews.TitleFiltering {
-			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.BokuenNews{}.GetName())
-		}
-	}
 	if c.NewsCfg.Whosaeng.Crawl {
 		c.Crawlers = append(c.Crawlers, crawlers.Whosaeng{})
 		if !c.NewsCfg.Whosaeng.TitleFiltering {
 			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.Whosaeng{}.GetName())
 		}
 	}
-	/*if c.NewsCfg.PharmNews.Crawl {
-		c.Crawlers = append(c.Crawlers, crawlers.PharmNews{})
-		if !c.NewsCfg.PharmNews.TitleFiltering {
-			CondOnlyContentsCrawlers = append(CondOnlyContentsCrawlers, crawlers.PharmNews{}.GetName())
-		}
-	}*/
 	if c.NewsCfg.HealthInNews.Crawl {
 		c.Crawlers = append(c.Crawlers, crawlers.HealthInNews{})
 		if !c.NewsCfg.HealthInNews.TitleFiltering {

@@ -135,9 +135,7 @@ type NewsConfig struct {
 	HITNews         NewsConfigItem `json:"hitnews.co.kr"`
 	DataNews        NewsConfigItem `json:"datanews.co.kr"`
 	DoctorsTimes    NewsConfigItem `json:"doctorstimes.com"`
-	BokuenNews      NewsConfigItem `json:"bokuennews.com"`
 	Whosaeng        NewsConfigItem `json:"whosaeng.com"`
-	PharmNews       NewsConfigItem `json:"pharmnews.com"`
 	HealthInNews    NewsConfigItem `json:"healthinnews.co.kr"`
 	MedipharmHealth NewsConfigItem `json:"medipharmhealth.co.kr"`
 }

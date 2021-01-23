@@ -351,15 +351,7 @@
         "crawl": true,
         "title_filtering": true
     },
-    "bokuennews.com": {
-        "crawl": true,
-        "title_filtering": true
-    },
     "whosaeng.com": {
-        "crawl": true,
-        "title_filtering": true
-    },
-    "pharmnews.com": {
         "crawl": true,
         "title_filtering": true
     },
