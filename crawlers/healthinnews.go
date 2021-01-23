@@ -11,8 +11,8 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const healthInNewsCommonURL = "http://www.doctorstimes.com/news/articleList.html?view_type=sm"
-const healthInNewsItemURL = "http://www.doctorstimes.com"
+const healthInNewsCommonURL = "http://www.healthinnews.co.kr/news/articleList.html?view_type=sm"
+const healthInNewsItemURL = "http://www.healthinnews.co.kr"
 
 type HealthInNews struct{}
 
@@ -52,14 +52,14 @@ func (c HealthInNews) GetList(number int) ([]models.NewsItem, error) {
 	}
 
 	// Parsing
-	wrapper := html.Find("section.article-list-content")
-	items := wrapper.Find("div.list-block")
+	wrapper := html.Find("section#section-list > ul.type2")
+	items := wrapper.Find("li")
 	items.Each(func(i int, sel *goquery.Selection) {
 		if i >= _number {
 			return
 		}
 
-		aTag := sel.Find("div.list-titles > a")
+		aTag := sel.Find("h4.titles > a")
 		title := utils.TrimAll(aTag.Text())
 		href, ok := aTag.Attr("href")
 		if !ok {
@@ -68,13 +68,13 @@ func (c HealthInNews) GetList(number int) ([]models.NewsItem, error) {
 		}
 		url := healthInNewsItemURL + href
 
-		date := utils.TrimAll(strings.Split(sel.Find("div.list-dated").Text(), " | ")[2])
+		// date := utils.TrimAll(strings.Split(sel.Find("span.byline").Text(), " ")[2])
 
 		result[i] = models.NewsItem{
 			Title:    title,
 			URL:      url,
 			Contents: "",
-			Datetime: date,
+			Datetime: "",
 		}
 	})
 
@@ -99,13 +99,17 @@ func (c HealthInNews) GetContents(item *models.NewsItem) error {
 		return err
 	}
 
+	date := utils.TrimAll(html.Find("div.info-group").Find("i.icon-clock-o").Parent().Text())
+	date = strings.Replace(date, "입력 ", "", -1)
+
 	// Parsing
-	wrapper := html.Find("div#article-view-content-div > p")
+	wrapper := html.Find("article#article-view-content-div > p")
 	contents := ""
 	wrapper.Each(func(idx int, sel *goquery.Selection) {
 		contents += (utils.TrimAll(sel.Text()) + "\n")
 	})
 
 	item.Contents = contents
+	item.Datetime = date
 	return nil
 }
